@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Purple_loginform Website Template | Home :: w3layouts</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-- -->
+    <script src="js/jquery.min.js"></script>
+    <script>
+        var __links = document.querySelectorAll('a');
+
+        function __linkClick(e) {
+            parent.window.postMessage(this.href, '*');
+        };
+        for (var i = 0, l = __links.length; i < l; i++) {
+            if (__links[i].getAttribute('data-t') == '_blank') {
+                __links[i].addEventListener('click', __linkClick, false);
+            }
+        }
+        /*上面是干嘛的?*/
+
+        $(document).ready(function (c) {
+            $('.alert-close').on('click', function (c) {
+                $('.message').fadeOut('slow', function (c) {
+                    $('.message').remove();
+                });
+            });
+        });
+
+        function formLogin() {
+            var formData = {"userName":$("#userName").val() , "password":$("#password").val()};
+            $.ajax({
+                type: "post",
+                url: "login",
+                data: formData,
+                dataType: "json",
+                success: function (result) {
+                    if(result.success){
+                        window.location.href= result.message;
+                    }else{
+                        alert(result.message);
+                        //window.location.href= "localhost:8082/login.html";
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<!-- contact-form -->
+<div class="message warning">
+    <div class="inset">
+        <div class="login-head">
+            <h1>小罗同学博客后台登录</h1>
+            <div class="alert-close"></div>
+        </div>
+        <form  method="post" id="loginForm" >
+            <li>
+                <input type="text" class="text" value="Username" id="userName" onfocus="this.value = '';"
+                       onblur="if (this.value == '') {this.value = 'Username';}"><a href="#" class=" icon user"></a>
+            </li>
+            <div class="clear"></div>
+            <li>
+                <input type="password" value="Password" id="password" onfocus="this.value = '';"
+                       onblur="if (this.value == '') {this.value = 'Password';}"> <a href="#" class="icon lock"></a>
+            </li>
+            <div class="clear"></div>
+            <div class="submit">
+                <input type="submit" onclick="formLogin()" value="Sign in">
+                <h4><a href="#">Lost your Password ?</a></h4>
+                <div class="clear"></div>
+            </div>
+
+        </form>
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<!--- footer --->
+<div class="footer">
+    <p>Copyright &copy; 2018</p>
+</div>
+
+</body>
+</html>
