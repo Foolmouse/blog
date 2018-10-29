@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Purple_loginform Website Template | Home :: w3layouts</title>
+    <title>博客后台管理系统登录</title>
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -30,18 +30,29 @@
         });
 
         function formLogin() {
-            var formData = {"userName":$("#userName").val() , "password":$("#password").val()};
+            var username = $.trim($("#userName").val());
+            var password = $.trim($("#password").val());
+            if (username == "") {
+                alert("请输入用户名");
+                return false;
+            } else if (password == "") {
+                alert("请输入密码");
+                return false;
+            }
+            //ajax去服务器端校验
+            var data = {userName: username, password: password};
+
             $.ajax({
-                type: "post",
+                type: "POST",
                 url: "login",
-                data: formData,
-                dataType: "json",
+                data: data,
+                dataType: 'json',
                 success: function (result) {
-                    if(result.success){
-                        window.location.href= result.message;
-                    }else{
-                        alert(result.message);
-                        //window.location.href= "localhost:8082/login.html";
+                    //alert(msg);
+                    if (result.success) {
+                        window.location.href = result.message;
+                    } else {
+                        alert("登录失败，请重试!");
                     }
                 }
             });
@@ -56,18 +67,18 @@
             <h1>小罗同学博客后台登录</h1>
             <div class="alert-close"></div>
         </div>
-        <form  method="post" id="loginForm" >
+        <form id="loginForm" onsubmit="return false" >
             <li>
                 <input type="text" class="text" value="Username" id="userName" onfocus="this.value = '';"
-                       onblur="if (this.value == '') {this.value = 'Username';}"><a href="#" class=" icon user"></a>
+                       onblur="if (this.value == '') {this.value = 'admin';}"><a href="#" class=" icon user"></a>
             </li>
             <div class="clear"></div>
             <li>
                 <input type="password" value="Password" id="password" onfocus="this.value = '';"
-                       onblur="if (this.value == '') {this.value = 'Password';}"> <a href="#" class="icon lock"></a>
+                       onblur="if (this.value == '') {this.value = '123';}"> <a href="#" class="icon lock"></a>
             </li>
             <div class="clear"></div>
-            <div class="submit">
+            <div >
                 <input type="submit" onclick="formLogin()" value="Sign in">
                 <h4><a href="#">Lost your Password ?</a></h4>
                 <div class="clear"></div>

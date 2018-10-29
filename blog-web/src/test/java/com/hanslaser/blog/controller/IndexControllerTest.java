@@ -1,6 +1,5 @@
 package com.hanslaser.blog.controller;
 
-import com.hanslaser.blog.controller.controller.IndexController;
 import junit.framework.TestCase;
 import org.junit.Test;
 
