@@ -13,6 +13,8 @@ public interface UserService {
 
     User login(String userName , String password);
 
+    User findUserByUserName(String userName);
+
 
 
 }

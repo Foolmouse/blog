@@ -21,4 +21,9 @@ public class UserServiceImpl implements UserService {
     public User login(String userName, String password) {
         return userRepository.findByUserNameAndPassword(userName.toLowerCase(), password);
     }
+
+    @Override
+    public User findUserByUserName(String userName) {
+        return userRepository.findByUserName(userName);
+    }
 }
