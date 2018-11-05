@@ -67,24 +67,7 @@
             <h1>小罗同学博客后台登录</h1>
             <div class="alert-close"></div>
         </div>
-        <!--<form id="loginForm" onsubmit="return false" >
-            <li>
-                <input type="text" class="text" value="Username" id="userName" onfocus="this.value = '';"
-                       onblur="if (this.value == '') {this.value = 'admin';}"><a href="#" class=" icon user"></a>
-            </li>
-            <div class="clear"></div>
-            <li>
-                <input type="password" value="Password" id="password" onfocus="this.value = '';"
-                       onblur="if (this.value == '') {this.value = '123';}"> <a href="#" class="icon lock"></a>
-            </li>
-            <div class="clear"></div>
-            <div >
-                <input type="submit" onclick="formLogin()" value="Sign in">
-                <h4><a href="#">Lost your Password ?</a></h4>
-                <div class="clear"></div>
-            </div>
 
-        </form>-->
 
         <form id="loginForm"  action="/login" method="post">
             <li>
@@ -99,7 +82,7 @@
             <div class="clear"></div>
             <div >
                 <input type="submit"  value="Sign in">
-                <h4><a href="#">Lost your Password ?</a></h4>
+                <h4><a href="/forgetPassword.html">Lost your Password ?</a></h4>
                 <div class="clear"></div>
             </div>
 

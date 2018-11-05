@@ -21,6 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .successForwardUrl("/redirectToIndex")
                 .loginPage("/login.html")
                 .loginProcessingUrl("/login")
+                .and().logout()
                 .and()
                 .authorizeRequests()        // 定义哪些URL需要被保护、哪些不需要被保护
                 .antMatchers("/login.html", "/css/**", "/images/**", "/js/**", "/views/**").permitAll()
