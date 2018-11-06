@@ -1,6 +1,6 @@
 package com.hanslaser.blog.controller;
 
-import com.hanslaser.blog.controller.service.BlogService;
+import com.hanslaser.blog.service.BlogService;
 import com.hanslaser.blog.entity.Blog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

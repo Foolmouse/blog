@@ -1,6 +1,6 @@
-package com.hanslaser.blog.controller.service.impl;
+package com.hanslaser.blog.service.impl;
 
-import com.hanslaser.blog.controller.service.UserService;
+import com.hanslaser.blog.service.UserService;
 import com.hanslaser.blog.entity.User;
 import com.hanslaser.blog.entity.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

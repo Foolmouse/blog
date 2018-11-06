@@ -1,18 +1,16 @@
 package com.hanslaser.blog.controller;
 
-import com.hanslaser.blog.util.MailUtil;
+import com.hanslaser.blog.entity.vo.Result;
+import com.hanslaser.blog.entity.vo.VerityCode;
+import com.hanslaser.blog.service.VerityCodeService;
+import com.hanslaser.blog.util.MyMailSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Random;
 
 /**
  * @author LuoJu
@@ -22,7 +20,10 @@ import java.util.Random;
 public class LoginController {
 
     @Autowired
-    private MailUtil mailUtil;
+    private MyMailSender myMailSender;
+
+    @Autowired
+    private VerityCodeService verityCodeService;
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -54,25 +55,18 @@ public class LoginController {
     /**
      * 忘记密码,发送邮箱验证码
      */
-    @RequestMapping("/forgetPassword/{email}")
-    public String forgetPassword(@PathVariable String email, HttpSession session) {
-        Random random = new Random();
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < 4; i++) {
-            builder.append(random.nextInt() + "");
-        }
-
+    @ResponseBody
+    @RequestMapping("/sendEmailWithVerifyCode")
+    public Result forgetPassword(@RequestParam String email, HttpSession session) {
+        logger.info(">>>>>>>>>>>" + email);
         try {
-            mailUtil.sendMail("luoj123855@hanslaser.com", "验证码", builder.toString());
-            HashMap<Object, Object> map = new HashMap();
-            map.put("verityCode", builder.toString());
-            map.put("verityTime", new Date());
-            session.setAttribute("verity", map);
-        } catch (MessagingException e) {
+            VerityCode verityCode = verityCodeService.sendEmailVerityCode(email);
+            session.setAttribute(email , verityCode);
+        } catch (Exception e) {
             logger.info("邮件发送失败");
             e.printStackTrace();
         }
-        return "modifyPassword.html";
+        return new Result(true, "");
     }
 
     /**

@@ -1,6 +1,6 @@
-package com.hanslaser.blog.controller.service.impl;
+package com.hanslaser.blog.service.impl;
 
-import com.hanslaser.blog.controller.service.BlogService;
+import com.hanslaser.blog.service.BlogService;
 import com.hanslaser.blog.entity.Blog;
 import com.hanslaser.blog.entity.BlogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author LuoJu

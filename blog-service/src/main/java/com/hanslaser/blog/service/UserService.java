@@ -1,4 +1,4 @@
-package com.hanslaser.blog.controller.service;
+package com.hanslaser.blog.service;
 
 import com.hanslaser.blog.entity.User;
 import org.springframework.stereotype.Service;
