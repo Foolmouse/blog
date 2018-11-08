@@ -11,7 +11,6 @@ import java.util.Optional;
  * @since 2018.11.1
  * Blog Service接口
  */
-@Service
 public interface BlogService {
 
     /**

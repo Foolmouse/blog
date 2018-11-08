@@ -62,6 +62,7 @@ public class LoginController {
         try {
             VerityCode verityCode = verityCodeService.sendEmailVerityCode(email);
             session.setAttribute(email , verityCode);
+            logger.info("邮件发送成功");
         } catch (Exception e) {
             logger.info("邮件发送失败");
             e.printStackTrace();
@@ -73,7 +74,7 @@ public class LoginController {
      * 忘记密码,通过邮箱验证码重置
      */
     @RequestMapping("/verityCode")
-    public String verityCode(@PathVariable String emailVerityCode) {
+    public String verityCode(@PathVariable String emailVerityCode , HttpSession session) {
         return "";
     }
 

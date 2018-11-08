@@ -10,11 +10,11 @@
         <![endif]-->
     <title>Bootstrap Free Blog Template</title>
     <!-- BOOTSTRAP CORE STYLE CSS -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link th:href="@{../assets/css/bootstrap.css}" rel="stylesheet" />
     <!-- FONTAWESOME STYLE CSS -->
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <link th:href="@{../assets/css/font-awesome.css}" rel="stylesheet" />
     <!-- CUSTOM STYLE CSS -->
-    <link href="assets/css/style.css" rel="stylesheet" />
+    <link th:href="@{../assets/css/style.css}" rel="stylesheet" />
 </head>
 <body>
 
@@ -23,7 +23,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-2">
-                    <img src="assets/img/person.jpg" class="img-circle img-responsive" />
+                    <img src="../static/assets/img/person.jpg" class="img-circle img-responsive" />
                 </div>
                 <div class="col-md-5 text-center">
                     <h1><strong>Luo Ju </strong></h1>
@@ -32,7 +32,7 @@
                 <div class="col-md-5">
                     <h3>WHO M I :</h3>
                     罗炬的技术博客
-                    I am a 22 years old guy who loves bloggging and designing .
+                    I am a 22 years old guy who loves bloggging and advanced technology .
                       I will provide all my works for free here with some good piece of information.
                      You can send email to me <i><strong>DunkLuo@163.com</strong></i>
                 </div>
@@ -48,7 +48,7 @@
                     <span>My Sponsers: </span>
                 </div>
                 <div class="col-md-10">
-                    <img src="assets/img/clients.png" alt="" class="img-rounded img-responsive" />
+                    <img th:src="@{../assets/img/clients.png}" alt="" class="img-rounded img-responsive" />
                 </div>
 
 
@@ -62,15 +62,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                    <div class="blog-main">
-                        <div class="heading-blog">
-                            The security is main concern while developing applications
+
+                    <div class="blog-main"  th:each="blog : ${blogList}">
+                        <div class="heading-blog" th:text="${blog.title}">
                         </div>
-                         <a href="views/singlepost.html">
-                        <img src="assets/img/1.jpg" class="img-responsive img-rounded" />
-                             </a>
+                        <!--  <a href="../views/singlepost.html">
+                        <img src="../assets/img/1.jpg" class="img-responsive img-rounded" />
+                             </a>-->
                         <div class="blog-info">
-                            <span class="label label-primary">Posted on 26th November 2014</span>
+                            <span class="label label-primary" th:text="${blog.createdDatetime}">Posted on 26th November 2014</span>
                             <span class="label label-success">In Technology</span>
                             <span class="label label-danger">By Jhon</span>
                             <span class="label label-info">
@@ -86,57 +86,9 @@
                         Praesent efficitur quam aliquam mauris sagittis, vel lacinia risus luctus. Ut vitae bibendum ipsum.
                         </div>
                     </div>
-                    <!--BLOG ONE END -->
-                    <div class="blog-main">
-                        <div class="heading-blog">
-                            The security is main concern while developing applications
-                        </div>
-                         <a href="views/singlepost.html">
-                        <img src="assets/img/2.jpg" class="img-responsive img-rounded" />
-                             </a>
-                        <div class="blog-info">
-                            <span class="label label-primary">Posted on 26th November 2014</span>
-                            <span class="label label-success">In Technology</span>
-                            <span class="label label-danger">By Jhon</span>
-                            <span class="label label-info">
-                                <i class="fa fa-thumbs-up"></i>+ 10
-                        <i class="fa fa-thumbs-down"></i>-3
-                            </span>
-                        </div>
-                        <div class="blog-txt">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Fusce nec tellus non diam feugiat commodo. Sed auctor mauris a tristique imperdiet. 
-                        Nullam egestas sapien non lectus suscipit, quis tristique odio imperdiet.
-                         Nullam elit lacus, tincidunt eget faucibus eget, vestibulum venenatis metus.
-                        Praesent efficitur quam aliquam mauris sagittis, vel lacinia risus luctus. Ut vitae bibendum ipsum.
-                        </div>
-                    </div>
-                     <!--BLOG TWO END -->
-                    <div class="blog-main">
-                        <div class="heading-blog">
-                            The security is main concern while developing applications
-                        </div>
-                        <a href="views/singlepost.html">
-                        <img src="assets/img/3.jpg" class="img-responsive img-rounded" />
-                            </a>
-                        <div class="blog-info">
-                            <span class="label label-primary">Posted on 26th November 2014</span>
-                            <span class="label label-success">In Technology</span>
-                            <span class="label label-danger">By Jhon</span>
-                            <span class="label label-info">
-                                <i class="fa fa-thumbs-up"></i>+ 10
-                        <i class="fa fa-thumbs-down"></i>-3
-                            </span>
-                        </div>
-                        <div class="blog-txt">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Fusce nec tellus non diam feugiat commodo. Sed auctor mauris a tristique imperdiet. 
-                        Nullam egestas sapien non lectus suscipit, quis tristique odio imperdiet.
-                         Nullam elit lacus, tincidunt eget faucibus eget, vestibulum venenatis metus.
-                        Praesent efficitur quam aliquam mauris sagittis, vel lacinia risus luctus. Ut vitae bibendum ipsum.
-                        </div>
-                    </div>
-                     <!--BLOG THREE END -->
+
+
+
                     <nav>
                         <ul class="pagination">
                             <li class="disabled"><a href="#"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
@@ -149,6 +101,11 @@
                         </ul>
                     </nav>
                      <!--PAGING  END -->
+
+
+
+
+
                 </div>
                 <div class="col-md-3">
 
@@ -199,11 +156,11 @@
                         </li>
                         <li class="list-group-item">
                             <a href="#">
-                                <img src="assets/img/ad1.jpg" class="img-responsive" />
+                                <img src="../static/assets/img/ad1.jpg" class="img-responsive" />
                             </a>
                             <br />
                             <a href="#">
-                                <img src="assets/img/ad2.jpg" class="img-responsive" />
+                                <img src="../static/assets/img/ad2.jpg" class="img-responsive" />
                             </a>
                         </li>
                     </ul>
@@ -232,7 +189,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center set-foot">
-                &copy 2014 jhon alexan |  More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+                &copy 2018  |  More Information <a href="https://github.com/Foolmouse" target="_blank" >罗炬的Github
             </div>
         </div>
     </div>

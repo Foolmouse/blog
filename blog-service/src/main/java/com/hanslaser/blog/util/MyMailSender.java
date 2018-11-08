@@ -7,12 +7,11 @@ import org.springframework.stereotype.Component;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import java.util.Random;
 
 @Component
 public class MyMailSender {
 
-    private  JavaMailSender mailSender;
+    private JavaMailSender mailSender;
 
     @Autowired
     public MyMailSender(JavaMailSender mailSender) {
@@ -37,15 +36,6 @@ public class MyMailSender {
         helper.setSubject(subject);
         helper.setText(text, true);
         mailSender.send(message);
-    }
-
-    private String generationVerityCode(){
-        Random random = new Random();
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < 4; i++) {
-            builder.append(random.nextInt() + "");
-        }
-        return builder.toString();
     }
 
 }

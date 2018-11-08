@@ -14,10 +14,16 @@
 
 
     <dependencies>
+    <dependency>
+        <groupId>com.hanslaser</groupId>
+        <artifactId>blog-service</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </dependency>
+
+    <!-- Security 权限依赖 -->
         <dependency>
-            <groupId>com.hanslaser</groupId>
-            <artifactId>blog-service</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
 

@@ -29,34 +29,7 @@
             });
         });
 
-        function formLogin() {
-            var username = $.trim($("#userName").val());
-            var password = $.trim($("#password").val());
-            if (username == "") {
-                alert("请输入用户名");
-                return false;
-            } else if (password == "") {
-                alert("请输入密码");
-                return false;
-            }
-            //ajax去服务器端校验
-            var data = {userName: username, password: password};
 
-            $.ajax({
-                type: "POST",
-                url: "login",
-                data: data,
-                dataType: 'json',
-                success: function (result) {
-                    //alert(msg);
-                    if (result.success) {
-                        window.location.href = result.message;
-                    } else {
-                        alert("登录失败，请重试!");
-                    }
-                }
-            });
-        }
     </script>
 </head>
 <body>
@@ -71,13 +44,11 @@
 
         <form id="loginForm"  action="/login" method="post">
             <li>
-                <input type="text" class="text" name="username" id="userName" onfocus="this.value = '';"
-                       onblur="if (this.value == '') {this.value = 'admin';}"><a href="#" class=" icon user"></a>
+                <input type="text" class="text" name="username" id="userName" ><a href="#" class=" icon user"></a>
             </li>
             <div class="clear"></div>
             <li>
-                <input type="password" name="password" id="password" onfocus="this.value = '';"
-                       onblur="if (this.value == '') {this.value = '123';}"> <a href="#" class="icon lock"></a>
+                <input type="password" name="password" id="password" > <a href="#" class="icon lock"></a>
             </li>
             <div class="clear"></div>
             <div >

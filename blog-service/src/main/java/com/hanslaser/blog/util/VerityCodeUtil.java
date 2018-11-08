@@ -23,7 +23,7 @@ public class VerityCodeUtil {
         Random random = new Random();
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < bits; i++) {
-            builder.append(random.nextInt() + "");
+            builder.append(random.nextInt(10) + "");
         }
         return builder.toString();
     }

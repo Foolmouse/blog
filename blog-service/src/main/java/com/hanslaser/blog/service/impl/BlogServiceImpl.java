@@ -1,27 +1,31 @@
 package com.hanslaser.blog.service.impl;
 
-import com.hanslaser.blog.service.BlogService;
 import com.hanslaser.blog.entity.Blog;
 import com.hanslaser.blog.entity.BlogRepository;
+import com.hanslaser.blog.service.BlogService;
+import com.hanslaser.blog.util.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
  * @author LuoJu
  * @since 2018.11.1
  */
-@Transactional
 @Service
+@Transactional
 public class BlogServiceImpl implements BlogService {
+
     @Autowired
     private BlogRepository blogRepository;
 
     @Override
     public Blog create(Blog blog) {
-       return  blogRepository.save(blog);
+        blog.setCreatedDatetime(DateUtils.getTimestamp());
+        return blogRepository.save(blog);
     }
 
     @Override
@@ -35,6 +39,7 @@ public class BlogServiceImpl implements BlogService {
             System.err.println("Exception: id is null;");
             return null;
         }
+        blog.setLastModifiedDatetime(DateUtils.getTimestamp());
         return blogRepository.save(blog);
     }
 
