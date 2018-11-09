@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,7 +45,8 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public void delete(Long id) {
         Blog blog = blogRepository.findById(id).get();
-        blogRepository.delete(blog);
+        blog.setDr(1);
+        blogRepository.save(blog);
     }
 
     @Override

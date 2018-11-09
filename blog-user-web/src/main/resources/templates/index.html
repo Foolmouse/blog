@@ -23,7 +23,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-2">
-                    <img src="../static/assets/img/person.jpg" class="img-circle img-responsive" />
+                    <img th:src="@{../assets/img/person.jpg}" class="img-circle img-responsive" />
                 </div>
                 <div class="col-md-5 text-center">
                     <h1><strong>Luo Ju </strong></h1>
@@ -64,15 +64,17 @@
                 <div class="col-md-9">
 
                     <div class="blog-main"  th:each="blog : ${blogList}">
-                        <div class="heading-blog" th:text="${blog.title}">
+                        <div class="heading-blog" >
+                            <a th:text="${blog.title}" th:href="@{/index/{blogId}(blogId=${blog.id})}"></a>
                         </div>
+                        <!-- 这个位置是文章图片展示 -->
                         <!--  <a href="../views/singlepost.html">
                         <img src="../assets/img/1.jpg" class="img-responsive img-rounded" />
                              </a>-->
                         <div class="blog-info">
                             <span class="label label-primary" th:text="${blog.createdDatetime}">Posted on 26th November 2014</span>
-                            <span class="label label-success">In Technology</span>
-                            <span class="label label-danger">By Jhon</span>
+                            <span class="label label-success" >In Technology</span>
+                            <span class="label label-danger" th:text="${blog.writer}">By Jhon</span>
                             <span class="label label-info">
                                 <i class="fa fa-thumbs-up"></i>+ 10
                         <i class="fa fa-thumbs-down"></i>-3

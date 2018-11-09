@@ -32,11 +32,18 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/index/{blogId}", method = RequestMethod.GET)
-    public String index(ModelMap map, @PathVariable Long blogId) {
+    public String single(ModelMap map, @PathVariable Long blogId) {
         Blog blog = blogService.findById(blogId);
         map.put("blog", blog);
         return "single";
     }
+
+    @RequestMapping(value = "/index/single", method = RequestMethod.GET)
+    public String single() {
+        return "single";
+    }
+
+
 
 }
 
