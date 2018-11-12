@@ -30,6 +30,9 @@
         <legend>
             <strong>博客列表</strong>
         </legend>
+
+        <div><a class="btn btn-primary" href="/blog/create" role="button">新增博客</a></div>
+
         <thead>
         <tr>
             <th>博客编号</th>
@@ -39,7 +42,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="blog : ${blogList}">
+        <tr th:each="blog : ${content}">
             <th scope="row" th:text="${blog.id}"></th>
             <td><a th:href="@{/blog/update/{blogId}(blogId=${blog.id})}" th:text="${blog.title}"></a></td>
             <td th:text="${blog.writer}"></td>
@@ -49,10 +52,43 @@
                     <!--th:href="@{/blog/delete/{blogId}(blogId=${blog.id})}"--> 删除</a>
             </td>
         </tr>
+
+        <nav>
+            <ul class="pagination">
+                <li><a href="">&laquo;</a></li>
+
+                <li>
+                    <a th:if="${not isFirstPage}" th:href="@{${'/blog/findAll'}(pageNum=${pageNum-1},pageSize=${pageSize})}">Previous</a>
+                    <a th:if="${isFirstPage}" href="javascript:void(0);">Previous</a>
+                </li>
+
+                <li th:each="pageNo : ${#numbers.sequence(1, totalPages)}">
+                    <a th:if="${pageNum eq pageNo}" href="javascript:void(0);">
+                        <span th:text="${pageNo}"></span>
+                    </a>
+
+                    <a th:if="${not (pageNum eq pageNo)}" th:href="@{${'/blog/findAll'}(pageNum=${pageNo},pageSize=${pageSize})}">
+                        <span th:text="${pageNo}"></span>
+                    </a>
+                </li>
+                <li>
+                    <a th:if="${not isLastPage}" th:href="@{${'/blog/findAll'}(pageNum=${pageNum+1},pageSize=${pageSize})}">Next</a>
+                    <a th:if="${isLastPage}" href="javascript:void(0);">Next</a>
+                </li>
+
+                <li><a href="#">&raquo;</a></li>
+            </ul>
+        </nav>
+
+
         </tbody>
+
+
+
+
     </table>
 
-    <div><a class="btn btn-primary" href="/blog/create" role="button">新增博客</a></div>
+
 </div>
 
 </body>

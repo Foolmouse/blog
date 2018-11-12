@@ -1,10 +1,9 @@
 package com.hanslaser.blog.service;
 
 import com.hanslaser.blog.entity.Blog;
-import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author LuoJu
@@ -18,7 +17,15 @@ public interface BlogService {
      */
     Blog create(Blog blog);
 
+    /**
+     * 查询所有
+     */
     List<Blog> findAll();
+
+    /**
+     * 分页查询
+     */
+    Page<Blog> findByPage(int currentPage , int pageSize);
 
     Blog update(Blog blog);
 
