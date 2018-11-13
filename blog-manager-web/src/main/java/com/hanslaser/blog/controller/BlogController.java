@@ -68,8 +68,8 @@ public class BlogController {
      */
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String getBlog(@PathVariable Long id, ModelMap map) {
-        map.addAttribute("blog", blogService.findById(id));
-        map.addAttribute("action", "update");
+        map.put("blog", blogService.findById(id));
+        map.put("action", "update");
         return BLOG_FORM;
     }
 

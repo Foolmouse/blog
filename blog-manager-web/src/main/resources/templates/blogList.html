@@ -55,7 +55,10 @@
 
         <nav>
             <ul class="pagination">
-                <li><a href="">&laquo;</a></li>
+                <li>
+                    <a th:if="${isFirstPage}" href="javascript:void(0);">&laquo;</a>
+                    <a th:if="${not isFirstPage}" th:href="@{${'/index'}(pageNum=1,pageSize=${pageSize})}">&laquo;</a>
+                </li>
 
                 <li>
                     <a th:if="${not isFirstPage}" th:href="@{${'/blog/findAll'}(pageNum=${pageNum-1},pageSize=${pageSize})}">Previous</a>
@@ -76,7 +79,10 @@
                     <a th:if="${isLastPage}" href="javascript:void(0);">Next</a>
                 </li>
 
-                <li><a href="#">&raquo;</a></li>
+                <li>
+                    <a th:if="${isLastPage}" href="javascript:void(0);">&raquo;</a>
+                    <a th:if="${not isLastPage}" th:href="@{/index(pageNum=${totalPages},pageSize=${pageSize})}">&raquo;</a>
+                </li>
             </ul>
         </nav>
 
