@@ -8,19 +8,15 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <packaging>jar</packaging>
 
-    <artifactId>blog-service</artifactId>
+    <artifactId>blog-common</artifactId>
 
     <dependencies>
         <dependency>
-
             <groupId>com.hanslaser</groupId>
-            <artifactId>blog-common</artifactId>
+            <artifactId>blog-entity</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
-
     </dependencies>
 
 

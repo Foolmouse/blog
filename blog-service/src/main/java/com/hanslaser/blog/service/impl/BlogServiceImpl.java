@@ -7,10 +7,7 @@ import com.hanslaser.blog.util.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.querydsl.QPageRequest;
-import org.springframework.data.querydsl.QSort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,8 +26,8 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Blog create(Blog blog) {
-        blog.setCreatedDatetime(DateUtils.getTimestamp());
-        blog.setLastModifiedDatetime(DateUtils.getTimestamp());
+        blog.setCreatedDatetime(com.hanslaser.blog.util.DateUtils.getTimestamp());
+        blog.setLastModifiedDatetime(com.hanslaser.blog.util.DateUtils.getTimestamp());
         return blogRepository.save(blog);
     }
 
@@ -40,7 +37,7 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public Page<Blog> findByPage(int currentPage , int pageSize) {
+    public Page<Blog> findByPage(int currentPage, int pageSize) {
         PageRequest request = new PageRequest(currentPage, pageSize, Sort.Direction.DESC, "lastModifiedDatetime");
         Page<Blog> page = blogRepository.findAll(request);
         return page;
