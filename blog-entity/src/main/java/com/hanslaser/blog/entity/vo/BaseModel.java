@@ -1,4 +1,4 @@
-package com.hanslaser.blog.entity;
+package com.hanslaser.blog.entity.vo;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -14,10 +14,10 @@ public class BaseModel {
     protected Long id;
 
     @Column
-    private Timestamp createdDatetime;
+    protected Timestamp createdDatetime;
 
     @Column
-    private Timestamp lastModifiedDatetime;
+    protected Timestamp lastModifiedDatetime;
 
     @Column
     protected Integer dr;

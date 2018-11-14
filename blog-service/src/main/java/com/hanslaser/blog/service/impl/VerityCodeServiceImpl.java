@@ -7,6 +7,7 @@ import com.hanslaser.blog.util.VerityCodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.MessagingException;
 import java.util.Calendar;
@@ -17,6 +18,7 @@ import java.util.Date;
  * @since 2018.11.06
  */
 @Service
+@Transactional
 public class VerityCodeServiceImpl implements VerityCodeService {
 
     @Autowired

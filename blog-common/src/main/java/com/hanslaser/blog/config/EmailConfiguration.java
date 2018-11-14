@@ -39,6 +39,15 @@ public class EmailConfiguration {
     }
 
     /*@Bean
+    public FilterRegistrationBean setFilter(){
+        FilterRegistrationBean filterBean = new FilterRegistrationBean();
+        filterBean.setFilter(new OpenSessionInViewFilter());
+        filterBean.setName("FilterController");
+        filterBean.addUrlPatterns("/*");
+        return filterBean;
+    }*/
+
+    /*@Bean
     public FreeMarkerConfigurationFactoryBean freeMarkerConfig() {
         Properties props = new Properties();
         props.setProperty("number_format", "0.##");

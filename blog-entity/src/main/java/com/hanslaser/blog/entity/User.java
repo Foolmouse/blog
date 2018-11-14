@@ -1,5 +1,7 @@
 package com.hanslaser.blog.entity;
 
+import com.hanslaser.blog.entity.vo.BaseModel;
+
 import javax.persistence.*;
 import java.sql.Date;
 

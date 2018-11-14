@@ -1,5 +1,7 @@
 package com.hanslaser.blog.entity;
 
+import com.hanslaser.blog.entity.vo.BaseModel;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
