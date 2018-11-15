@@ -7,9 +7,6 @@ import java.util.Date;
 
 /**
  * 日期时间工具类.
- *
- * @author shengtao.zhou
- * @since 2018.06.13
  */
 public class DateUtils {
 
@@ -184,12 +181,12 @@ public class DateUtils {
     /**
      * 日期转化 毫秒转化成 XXX天XX时XX分XX秒
      */
-    public static String getDateDayHourMinuteSecond(long seconds){
-        seconds = seconds/1000;
-        int day=(int)(seconds/(24 * 60 * 60));//换成天
-        int hour=(int)((seconds - day * 24 * 60 * 60)/3600);
-        int minute=(int)((seconds - day * 24 * 60 * 60 - hour * 60 * 60)/60);
-        int second=(int)(seconds - day * 24 * 60 * 60 - hour * 60 * 60 - minute * 60);
-        return day+"天"+hour+"时"+minute+"分"+second+"秒";
+    public static String getDateDayHourMinuteSecond(long seconds) {
+        seconds = seconds / 1000;
+        int day = (int) (seconds / (24 * 60 * 60));//换成天
+        int hour = (int) ((seconds - day * 24 * 60 * 60) / 3600);
+        int minute = (int) ((seconds - day * 24 * 60 * 60 - hour * 60 * 60) / 60);
+        int second = (int) (seconds - day * 24 * 60 * 60 - hour * 60 * 60 - minute * 60);
+        return day + "天" + hour + "时" + minute + "分" + second + "秒";
     }
 }
