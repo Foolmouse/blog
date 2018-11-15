@@ -28,6 +28,7 @@ public class PortalLogServiceImpl implements PortalLogService {
         portalLog.setMethod(request.getMethod());
         portalLog.setUserAgent(request.getHeader("User-Agent"));
         portalLog.setRequestDateTime(DateUtils.getTimestamp());
+        portalLog.setBlogName(blogName);
         logRepository.save(portalLog);
     }
 
