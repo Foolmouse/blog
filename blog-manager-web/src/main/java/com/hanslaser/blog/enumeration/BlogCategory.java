@@ -1,7 +1,7 @@
 package com.hanslaser.blog.enumeration;
 
 /**
- * Description : Eum class is a powerful util , we can use this to put data by the value that like Map;
+ * Description : Eum class is a powerful util , we can use to put data that like Map by the value ;
  *
  * @author LuoJu
  * @since 2018.10.31
