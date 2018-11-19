@@ -1,20 +1,12 @@
 package com.hanslaser.blog.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.configurers.FormLoginConfigurer;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import javax.annotation.Resource;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 /**
  * @author LuoJu
@@ -25,50 +17,32 @@ import javax.annotation.Resource;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Resource(name = "userDetailsServiceImpl")
-    private UserDetailsService userDetailsService;
-
-    @Autowired
-    private DaoAuthenticationProvider daoAuthenticationProvider;
-
-    /**
-     * 负责验证的过滤器UsernamePasswordAuthenticationFilter持有AuthenticationManager,它持有一个AuthenticationProvider集合,负责具体的验证
-     * @param auth
-     * @throws Exception
-     */
-/*    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        super.configure(auth);
-        //auth.userDetailsService(userDetailsService);
-        auth.authenticationProvider(daoAuthenticationProvider);
-
-    }*/
+    @Bean
+    public AuthenticationSuccessHandler mySuccessHandler() {
+        return new MyAuthenticationSuccessHandler("/redirectToIndex");
+    }
 
     @Bean
-    DaoAuthenticationProvider daoAuthenticationProvider(){
-        DaoAuthenticationProvider daoAuthenticationProvider = new MyDaoAuthenticationProvider();
-        daoAuthenticationProvider.setPasswordEncoder(new BCryptPasswordEncoder());
-        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
-        return daoAuthenticationProvider;
+    public AuthenticationFailureHandler myFailureHandler() {
+        return new MyAuthenticationFailureHandler();
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authenticationProvider(daoAuthenticationProvider);
 
-        FormLoginConfigurer<HttpSecurity> configurer = http.formLogin();
-        configurer.successForwardUrl("/redirectToIndex").loginPage("/login.html").loginProcessingUrl("/login").and();
-        configurer.authenticationDetailsSource(new MyAuthenticationDetailsSource());
+        http.formLogin().loginPage("/login.html").loginProcessingUrl("/login")
+                .successHandler(mySuccessHandler())
+                .failureHandler(myFailureHandler());
+
         http.logout()
                 .and()
                 .authorizeRequests()        // 定义哪些URL需要被保护、哪些不需要被保护
-                .antMatchers("/login.html","/forgetPassword.html","/modifyPassword.html","/sendEmailWithVerifyCode","/verityCode",
+                .antMatchers("/login.html", "/forgetPassword.html", "/modifyPassword.html", "/sendEmailWithVerifyCode", "/verityCode",
                         "/css/**", "/images/**", "/js/**", "/views/**")
                 .permitAll()
                 .anyRequest()               // 任何请求,登录后可以访问
                 .authenticated()
                 .and()
                 .csrf().disable();
-
     }
 }
