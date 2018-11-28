@@ -47,7 +47,6 @@ public class IndexController {
         map.put("blogList", page.getContent());
         //当前页
         map.put("pageNum", pageNum);
-
         //是否第一页
         map.put("isFirstPage", page.isFirst());
         //是否最后一页

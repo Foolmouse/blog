@@ -15,6 +15,8 @@
     <link th:href="@{../assets/css/font-awesome.css}" rel="stylesheet"/>
     <!-- CUSTOM STYLE CSS -->
     <link th:href="@{../assets/css/style.css}" rel="stylesheet"/>
+    <link th:href="@{../assets/css/myCss.css}" rel="stylesheet"/>
+
 </head>
 <body>
 
@@ -31,7 +33,6 @@
             </div>
             <div class="col-md-5">
                 <h3>WHO M I :</h3>
-                罗炬的技术博客
                 I am a 22 years old guy who loves bloggging and advanced technology .
                 I will provide all my works for free here with some good piece of information.
                 You can send email to me <i><strong>DunkLuo@163.com</strong></i>
@@ -40,7 +41,6 @@
     </div>
 </section>
 <!--HOME SECTION END-->
-
 <section>
     <div class="container">
         <div class="row">
@@ -50,8 +50,6 @@
             <div class="col-md-10">
                 <img th:src="@{../assets/img/clients.png}" alt="" class="img-rounded img-responsive"/>
             </div>
-
-
         </div>
     </div>
 </section>
@@ -73,21 +71,21 @@
                          </a>-->
                     <div class="blog-info">
                         <span class="label label-primary"
-                              th:text="${blog.createdDatetime}">Posted on 26th November 2014</span>
-                        <span class="label label-success">In Technology</span>
+                              th:text="${#dates.format(blog.createdDatetime,'yyyy-MM-dd hh:mm:ss')}">Posted on 26th November 2014</span>
+
+                        <span th:switch="${blog.category}">
+                            <span th:case="1" class="label label-success" >生活类</span>
+                            <span th:case="2" class="label label-success" >技术类</span>
+                            <span th:case="3" class="label label-success" >闲谈</span>
+                        </span>
                         <span class="label label-danger" th:text="${blog.writer}">By Jhon</span>
                         <span class="label label-info">
-                                <i class="fa fa-thumbs-up"></i>+ 10
-                        <i class="fa fa-thumbs-down"></i>-3
+                                <i class="fa fa-thumbs-up"></i>+0
+                        <i class="fa fa-thumbs-down"></i>- 0
                             </span>
                     </div>
-                    <div class="blog-txt">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Fusce nec tellus non diam feugiat commodo. Sed auctor mauris a tristique imperdiet.
-                        Nullam egestas sapien non lectus suscipit, quis tristique odio imperdiet.
-                        Nullam elit lacus, tincidunt eget faucibus eget, vestibulum venenatis metus.
-                        Praesent efficitur quam aliquam mauris sagittis, vel lacinia risus luctus. Ut vitae bibendum
-                        ipsum.
+                    <div class="blog-txt" th:utext="${blog.content}">
+                        博文没有内容...
                     </div>
                 </div>
 
@@ -95,19 +93,19 @@
                 <nav>
                     <ul class="pagination">
                         <li>
-                            <a th:if="${isFirstPage}" href="javascript:void(0);">&laquo;</a>
+                            <a th:if="${isFirstPage}" href="javascript:void(0);" class="disabledI">&laquo;</a>
                             <a th:if="${not isFirstPage}" th:href="@{${'/index'}(pageNum=1,pageSize=${pageSize})}">&laquo;</a>
                         </li>
 
                         <li>
                             <a th:if="${not isFirstPage}"
                                th:href="@{${'/index'}(pageNum=${pageNum-1},pageSize=${pageSize})}">上一页</a>
-                            <a th:if="${isFirstPage}" href="javascript:void(0);">上一页</a>
+                            <a th:if="${isFirstPage}" href="javascript:void(0);" class="disabledI">上一页</a>
                         </li>
 
                         <li th:each="pageNo : ${#numbers.sequence(1, totalPages)}">
-                            <a th:if="${pageNum eq pageNo}" href="javascript:void(0);">
-                                <span th:text="${pageNo}"></span>
+                            <a th:if="${pageNum eq pageNo}" href="javascript:void(0);" class="disabledI">
+                                <b><span th:text="${pageNo}"></span></b>
                             </a>
 
                             <a th:if="${not (pageNum eq pageNo)}"
@@ -119,12 +117,13 @@
                         <li>
                             <a th:if="${not isLastPage}"
                                th:href="@{${'/index'}(pageNum=${pageNum+1},pageSize=${pageSize})}">下一页</a>
-                            <a th:if="${isLastPage}" href="javascript:void(0);">Next</a>
+                            <a th:if="${isLastPage}" href="javascript:void(0);" class="disabledI">下一页</a>
                         </li>
 
                         <li>
-                            <a th:if="${isLastPage}" href="javascript:void(0);">&raquo;</a>
-                            <a th:if="${not isLastPage}" th:href="@{/index(pageNum=${totalPages},pageSize=${pageSize})}">&raquo;</a>
+                            <a class="disabledI" th:if="${isLastPage}" href="javascript:void(0);" disabled="true">&raquo;</a>
+                            <a th:if="${not isLastPage}"
+                               th:href="@{/index(pageNum=${totalPages},pageSize=${pageSize})}">&raquo;</a>
                         </li>
                     </ul>
                 </nav>

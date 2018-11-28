@@ -48,6 +48,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <!-- 去除内嵌tomcat -->
+            <!--<exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>-->
         </dependency>
 
         <!-- 模板引擎 Thymeleaf 依赖 -->
@@ -111,39 +118,38 @@
 
     <build>
         <plugins>
-             <!--&lt;!&ndash;Spring Boot Maven 插件 , 如果不想创建web.xml就使用此插件&ndash;&gt;-->
-            <plugin>
+            <!--<plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
+            </plugin>-->
 
-            <plugin>
-                <!-- The plugin rewrites your manifest -->
+          <!--  <plugin>
+                &lt;!&ndash; The plugin rewrites your manifest &ndash;&gt;
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>1.3.0.RELEASE</version>
                 <configuration>
-                    <!-- 指定该Main Class为全局的唯一入口 -->
+                    &lt;!&ndash; 指定该Main Class为全局的唯一入口 &ndash;&gt;
                     <mainClass>com.hanslaser.blog.WebApplication</mainClass>
                     <layout>ZIP</layout>
                 </configuration>
                 <executions>
                     <execution>
                         <goals>
-                            <goal>repackage</goal><!--可以把依赖的包都打包到生成的Jar包中-->
+                            <goal>repackage</goal>&lt;!&ndash;可以把依赖的包都打包到生成的Jar包中&ndash;&gt;
                         </goals>
-                        <!--可以生成不含依赖包的不可执行Jar包-->
-                        <!-- configuration>
+                        &lt;!&ndash;可以生成不含依赖包的不可执行Jar包&ndash;&gt;
+                        &lt;!&ndash; configuration>
                           <classifier>exec</classifier>
-                        </configuration> -->
+                        </configuration> &ndash;&gt;
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
 
         </plugins>
     </build>
 
-    <repositories>
+    <!--<repositories>
         <repository>
             <id>spring-snapshots</id>
             <name>Spring Snapshots</name>
@@ -152,7 +158,7 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
-    </repositories>
+    </repositories>-->
 
 
 
