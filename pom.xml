@@ -63,7 +63,7 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
-        <!-- Spring Data JPA 依赖 :: 数据持久层框架 -->
+        <!-- Spring Data JPA 依赖 : 数据持久层框架 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
