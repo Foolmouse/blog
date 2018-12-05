@@ -1,12 +1,15 @@
 package com.hanslaser.blog;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 
 /**
  * 门户启动类
@@ -16,7 +19,9 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableCaching
+//@PropertySources({@PropertySource({"classpath:application-entity.yml"})})
 @ComponentScan(value = "com.hanslaser.blog")
+@EnableAutoConfiguration
 @ServletComponentScan("com.hanslaser.blog")
 public class WebApplication extends SpringBootServletInitializer {
 

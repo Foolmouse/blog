@@ -20,6 +20,21 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
 
+email:
+  enabled: true
+  host: 172.18.50.22
+  port: 25
+  useCredentials: true
+  username: NEOA@hanslaser.com
+  password: hansoa%2018
+  tls: false
+  smtp:
+    starttls:
+      enable: false
+
+
+
+
 
 
 
