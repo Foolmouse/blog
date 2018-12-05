@@ -11,7 +11,6 @@ import javax.mail.MessagingException;
  * @since 2018.11.06
  */
 public interface VerityCodeService {
-    VerityCode sendEmailVerityCode(String email) throws MessagingException;
-
+    VerityCode sendEmailVerityCode(String prefixMessage, String email) throws MessagingException;
 
 }

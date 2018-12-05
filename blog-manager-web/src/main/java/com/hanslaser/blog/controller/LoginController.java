@@ -2,15 +2,22 @@ package com.hanslaser.blog.controller;
 
 import com.hanslaser.blog.entity.vo.Result;
 import com.hanslaser.blog.entity.vo.VerityCode;
+import com.hanslaser.blog.service.UserService;
 import com.hanslaser.blog.service.VerityCodeService;
 import com.hanslaser.blog.util.MyMailSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 /**
  * @author LuoJu
@@ -21,9 +28,12 @@ public class LoginController {
 
     @Autowired
     private MyMailSender myMailSender;
-
     @Autowired
     private VerityCodeService verityCodeService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -58,24 +68,42 @@ public class LoginController {
     @ResponseBody
     @RequestMapping("/sendEmailWithVerifyCode")
     public Result forgetPassword(@RequestParam String email, HttpSession session) {
-        logger.info(">>>>>>>>>>>" + email);
         try {
-            VerityCode verityCode = verityCodeService.sendEmailVerityCode(email);
-            session.setAttribute(email , verityCode);
-            logger.info("邮件发送成功");
+            userService.assertEmailExist(email);
+            VerityCode verityCode = verityCodeService.sendEmailVerityCode("你的重置密码验证码为:", email);
+            session.setAttribute("email", email);
+            session.setAttribute("verityCode", verityCode.getVerifyCode());
+            logger.info("邮件发送成功 , 验证码为" + verityCode.getVerifyCode());
         } catch (Exception e) {
-            logger.info("邮件发送失败");
-            e.printStackTrace();
+            logger.info(e.getMessage());
+            //e.printStackTrace();
+            return new Result(false, e.getMessage());
         }
         return new Result(true, "");
     }
 
     /**
-     * 忘记密码,通过邮箱验证码重置
+     * 重置密码
      */
-    @RequestMapping("/verityCode")
-    public String verityCode(@PathVariable String emailVerityCode , HttpSession session) {
-        return "";
+    @ResponseBody
+    @RequestMapping("/resetUserPassword")
+    public Result resetUserPassword(@RequestParam String verifyCode, @RequestParam String newPassword, @RequestParam String confirmPassword) {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        String email = (String) request.getSession().getAttribute("email");
+        String localVerityCode = (String) request.getSession().getAttribute("verityCode");
+
+        if (null != email) {
+            if (!newPassword.equals(confirmPassword)) {
+                return new Result(false, "两次输入密码不一致");
+            }
+            if (!localVerityCode.equals(verifyCode)) {
+                return new Result(false, "验证码不正确");
+            }
+            userService.updatePasswordByEmail(passwordEncoder.encode(newPassword), email);
+            return new Result(true, "");
+        } else {
+            return new Result(false, "验证已失效,请重新发送验证码");
+        }
     }
 
 }

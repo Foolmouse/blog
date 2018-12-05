@@ -1,7 +1,6 @@
 package com.hanslaser.blog.service;
 
 import com.hanslaser.blog.entity.User;
-import org.springframework.stereotype.Service;
 
 /**
  * @author LuoJu
@@ -10,10 +9,12 @@ import org.springframework.stereotype.Service;
  */
 public interface UserService {
 
-    User login(String userName , String password);
+    User login(String userName, String password);
 
-    User findUserByUserNameOrEmail(String userName , String email);
+    User findUserByUserNameOrEmail(String userNameOrEmail);
 
+    boolean assertEmailExist(String email);
 
+    void updatePasswordByEmail(String newPassword, String email);
 
 }

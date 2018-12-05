@@ -24,25 +24,22 @@ public class VerityCodeServiceImpl implements VerityCodeService {
     @Autowired
     private MyMailSender myMailSender;
 
-
     @Override
-    public VerityCode sendEmailVerityCode(String email) throws MessagingException {
+    public VerityCode sendEmailVerityCode(String prefixMessage, String email) throws MessagingException {
         VerityCode code = new VerityCode();
         code.setEmail(email);
         Date sendDate = new Date();
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(sendDate);
-        calendar.add(Calendar.MINUTE , 30);
+        calendar.add(Calendar.MINUTE, 30);
         code.setExpiredDatetime(calendar.getTime());
         code.setVerifyCode(VerityCodeUtil.generationVerityCode(4));
 
-        myMailSender.sendMail("luoj123855@hanslaser.com", "重置密码验证码" , code.getVerifyCode());
+        myMailSender.sendMail(email, "重置密码验证码", prefixMessage + code.getVerifyCode());
         //todo
         //目前使用量小,后期验证码放入redis缓存中
         return code;
     }
-
-
 
 }
