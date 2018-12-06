@@ -43,7 +43,7 @@ public class MyAuthenticationFailureHandler extends SimpleUrlAuthenticationFailu
         loginLog.setIp(remoteHost);
         loginLog.setLoginDateTime(DateUtils.getTimestamp());
         loginLog.setMethod(method);
-        loginLog.setIsLoginSuccess("登陆成功");
+        loginLog.setIsLoginSuccess("登陆失败");
         loginLog.setErrorMessage(errorMessage);
 
         logService.create(loginLog);
