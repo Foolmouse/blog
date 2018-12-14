@@ -76,7 +76,7 @@ public class BlogController {
     /**
      * 获取所有blogList
      */
-    @RequestMapping(value = "/findAll", method = RequestMethod.GET)
+    @RequestMapping(value = "/findPage", method = RequestMethod.GET)
     public String getAllBlog(ModelMap map, @RequestParam(required = false,defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "5") Integer pageSize){
         Page<Blog> page = blogService.findByPage(pageNum-1, pageSize);
         //总条数
