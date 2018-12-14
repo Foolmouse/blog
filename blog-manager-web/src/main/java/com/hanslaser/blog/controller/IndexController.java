@@ -17,14 +17,14 @@ public class IndexController {
     @Autowired
     private PortalLogService portalLogService;
 
+    @RequestMapping("/addBlog")
+    public String toAddBlog() {
+        return "redirect:/blog/create";
+    }
+
     @RequestMapping("/blogList")
     public String toBlogList() {
         return "redirect:/blog/findPage";
-    }
-
-    @RequestMapping("/calendar")
-    public String toCalendar() {
-        return "calendar";
     }
 
     @RequestMapping("/stats")

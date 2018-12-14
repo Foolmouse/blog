@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 public class BlogController {
 
     private final static String REDIRECT_INDEX = "redirect:/index";
-    private final static String REDIRECT_BLOG_LIST = "redirect:/blog/findAll";
+    private final static String REDIRECT_BLOG_LIST = "redirect:/blog/findPage";
     private final static String BLOG_LIST = "blogList";
     private final static String BLOG_FORM = "blogForm";
 

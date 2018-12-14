@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>后台管理页面</title>
+    <!--Favicon -->
+    <link rel="icon" th:href="@{../assets/img/favicon.ico}" type="image/x-icon"/>
+
+    <!--Bootstrap.min css-->
+    <link rel="stylesheet" th:href="@{../assets/plugins/bootstrap/css/bootstrap.min.css}">
+
+    <!--Icons css-->
+    <link rel="stylesheet" th:href="@{../assets/css/icons.css}">
+
+    <!--Style css-->
+    <link rel="stylesheet" th:href="@{../assets/css/style.css}">
+
+    <!--mCustomScrollbar css-->
+    <link rel="stylesheet" th:href="@{../assets/plugins/scroll-bar/jquery.mCustomScrollbar.css}">
+
+    <!--Sidemenu css-->
+    <link rel="stylesheet" th:href="@{../assets/plugins/toggle-menu/sidemenu.css}">
+
+    <!--DataTables css-->
+    <link rel="stylesheet" th:href="@{../assets/plugins/Datatable/css/dataTables.bootstrap4.css}">
+
+
+</head>
+
+<body class="app ">
+
+<div id="spinner"></div>
+
+<div id="app">
+    <div class="main-wrapper">
+        <!-- 上方导航栏 -->
+        <nav class="navbar navbar-expand-lg main-navbar">
+            <a class="header-brand" th:href="@{index.html}">
+                <img th:src="@{assets/img/brand/logo.png}" class="header-brand-img" alt="Kharna-Admin  logo">
+            </a>
+            <form class="form-inline mr-auto">
+                <ul class="navbar-nav mr-3">
+                    <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i
+                            class="ion ion-navicon-round"></i></a></li>
+                    <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-md-none navsearch"><i
+                            class="ion ion-search"></i></a></li>
+                </ul>
+                <div class="search-element">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-primary" type="submit"><i class="ion ion-search"></i></button>
+                </div>
+            </form>
+            <ul class="navbar-nav navbar-right">
+                <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
+                                                             class="nav-link notification-toggle nav-link-lg beep"><i
+                        class="ion-ios-email-outline"></i></a>
+                    <div class="dropdown-menu dropdown-list dropdown-menu-right">
+                        <div class="dropdown-header">Messages
+                            <div class="float-right">
+                                <a href="#">View All</a>
+                            </div>
+                        </div>
+                        <div class="dropdown-list-content">
+                            <a href="#" class="dropdown-item dropdown-item-unread">
+                                <img alt="image" th:src="@{assets/img/avatar/avatar-1.jpeg.jpg}"
+                                     class="rounded-circle dropdown-item-img">
+                                <div class="dropdown-item-desc">
+                                    <div class="dropdownmsg d-flex">
+                                        <div class="">
+                                            <b>Stewart Ball</b>
+                                            <p>Your template awesome</p>
+                                        </div>
+                                        <div class="time">6 hours ago</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
+                                                             class="nav-link  nav-link-lg beep"><i
+                        class="ion-ios-bell-outline"></i></a>
+                    <div class="dropdown-menu dropdown-list dropdown-menu-right">
+                        <div class="dropdown-header">Notifications
+                            <div class="float-right">
+                                <a href="#">View All</a>
+                            </div>
+                        </div>
+                        <div class="dropdown-list-content">
+                            <a href="#" class="dropdown-item">
+                                <i class="fa fa-users text-primary"></i>
+                                <div class="dropdown-item-desc">
+                                    <b>So many Users Visit your template</b>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li class="dropdown dropdown-list-toggle">
+                    <a href="#" class="nav-link nav-link-lg full-screen-link">
+                        <i class="ion-arrow-expand" id="fullscreen-button"></i>
+                    </a>
+                </li>
+                <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg">
+                    <img th:src="@{assets/img/avatar/avatar-1.jpeg.jpg}" alt="profile-user" class="rounded-circle w-32">
+                    <div class="d-sm-none d-lg-inline-block">Jessica Lee</div>
+                </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a href="profile.html" class="dropdown-item has-icon">
+                            <i class="ion ion-android-person"></i> Profile
+                        </a>
+                        <a href="profile.html" class="dropdown-item has-icon">
+                            <i class="ion-android-drafts"></i> Messages
+                        </a>
+                        <a href="profile.html" class="dropdown-item has-icon">
+                            <i class="ion ion-gear-a"></i> Settings
+                        </a>
+                        <a href="/logout" class="dropdown-item has-icon">
+                            <i class="ion-ios-redo"></i> Logout
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <aside class="app-sidebar">
+            <div class="app-sidebar__user">
+                <div class="dropdown">
+                    <a class="nav-link pl-2 pr-2 leading-none d-flex" data-toggle="dropdown" href="#">
+                        <img alt="image" th:src="@{assets/img/avatar/avatar-1.jpeg.jpg}"
+                             class=" avatar-md rounded-circle">
+                        <span class="ml-2 d-lg-block">
+									<span class="text-white app-sidebar__user-name mt-5">Jessica Lee</span><br>
+									<span class="text-muted app-sidebar__user-name text-sm"> Web-Designer</span>
+								</span>
+                    </a>
+                </div>
+            </div>
+            <ul class="side-menu">
+                <li class="slide">
+                    <a class="side-menu__item" data-toggle="slide" href="#"><i
+                            class="side-menu__icon fa fa-desktop"></i><span class="side-menu__label">Dashboard</span><i
+                            class="angle fa fa-angle-right"></i></a>
+                    <ul class="slide-menu">
+                        <li><a class="slide-item" href="index.html"><span>Dashboard 01</span></a></li>
+                        <li><a class="slide-item" href="index2.html"><span>Dashboard 02</span></a></li>
+                        <li><a class="slide-item" href="index3.html"><span>Dashboard 03</span></a></li>
+                    </ul>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item" data-toggle="slide" href="#"><i
+                            class="side-menu__icon fa fa-table"></i><span class="side-menu__label">Tables</span><i
+                            class="angle fa fa-angle-right"></i></a>
+                    <ul class="slide-menu">
+                        <li><a href="/index/portalLog" class="slide-item">门户访问日志</a></li>
+                        <li><a href="/index/loginLog" class="slide-item">后台操作日志</a></li>
+                    </ul>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item" data-toggle="slide" href="#"><i
+                            class="side-menu__icon fa fa-file-text"></i><span class="side-menu__label">Forms</span><i
+                            class="angle fa fa-angle-right"></i></a>
+                    <ul class="slide-menu">
+                        <li><a href="/index/addBlog" class="slide-item">添加博客</a></li>
+                        <li><a href="/index/blogList" class="slide-item">博客管理</a></li>
+                        <li><a href="formadvanced.html" class="slide-item"> Advanced Form</a></li>
+                        <li><a href="formeditor.html" class="slide-item"> Form Editor</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </aside>
+
+
+        <div class="app-content">
+            <section class="section">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Tables</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Data Tables</li>
+                </ol>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>门户访问记录</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="example"
+                                           class="table table-striped table-bordered border-t0 text-nowrap w-100">
+                                        <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>博客名</th>
+                                            <th>IP地址</th>
+                                            <th>请求方式</th>
+                                            <th>访问时间</th>
+                                            <th>浏览器信息</th>
+                                            <th>错误信息</th>
+                                        </tr>
+
+                                        </thead>
+                                        <tbody>
+
+                                        <tr th:each="portalLog : ${content}">
+                                            <th scope="row" th:text="${portalLog.id}"></th>
+                                            <td th:text="${portalLog.blogName}"></td>
+                                            <td th:text="${portalLog.ip}"></td>
+                                            <td th:text="${portalLog.method}"></td>
+                                            <td th:text="${portalLog.requestDateTime}"></td>
+                                            <td th:text="${portalLog.userAgent}"></td>
+                                            <td th:text="${portalLog.errorMessage}"></td>
+                                        </tr>
+
+
+                                        </tbody>
+                                    </table>
+
+                                    <nav aria-label="...">
+                                        <ul class="pagination">
+                                            <!-- 跳转第一页 -->
+                                            <li class="page-item">
+                                                <a class="page-link" th:if="${isFirstPage}" href="javascript:void(0);">&laquo;</a>
+                                                <a class="page-link" th:if="${not isFirstPage}"
+                                                   th:href="@{/portalLog/findPage(pageNum=1,pageSize=${pageSize})}">&laquo;</a>
+                                            </li>
+
+                                            <!-- 跳转上一页 -->
+                                            <li class="page-item">
+                                                <a class="page-link" th:if="${not isFirstPage}"
+                                                   th:href="@{/portalLog/findPage(pageNum=${pageNum-1},pageSize=${pageSize})}">Previous</a>
+                                                <a class="page-link" th:if="${isFirstPage}" href="javascript:void(0);">Previous</a>
+                                            </li>
+
+                                            <!-- 遍历中间页面 -->
+                                            <li class="page-item"
+                                                th:each="pageNo : ${#numbers.sequence(1, totalPages)}">
+                                                <a class="page-link" th:if="${pageNum eq pageNo}"
+                                                   href="javascript:void(0);">
+                                                    <span th:text="${pageNo}"></span>
+                                                </a>
+
+                                                <a class="page-link" th:if="${not (pageNum eq pageNo)}"
+                                                   th:href="@{/portalLog/findPage(pageNum=${pageNo},pageSize=${pageSize})}">
+                                                    <span th:text="${pageNo}"></span>
+                                                </a>
+                                            </li>
+
+                                            <!-- 跳转下一页 -->
+                                            <li class="page-item">
+                                                <a class="page-link" th:if="${not isLastPage}"
+                                                   th:href="@{/portalLog/findPage(pageNum=${pageNum+1},pageSize=${pageSize})}">Next</a>
+                                                <a class="page-link" th:if="${isLastPage}" href="javascript:void(0);">Next</a>
+                                            </li>
+
+                                            <!-- 跳转最后一页 -->
+                                            <li class="page-item">
+                                                <a class="page-link" th:if="${isLastPage}" href="javascript:void(0);">&raquo;</a>
+                                                <a class="page-link" th:if="${not isLastPage}"
+                                                   th:href="@{/portalLog/findPage(pageNum=${totalPages},pageSize=${pageSize})}">&raquo;</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+
+        <footer class="main-footer">
+            <div class="text-center">
+                Copyright &copy;Kharna-Admin 2018. Design By<a href="https://spruko.com/"> Spruko</a>
+            </div>
+        </footer>
+
+    </div>
+</div>
+
+<!--Jquery.min js-->
+<script th:src="@{../assets/js/jquery.min.js}"></script>
+
+<!--popper js-->
+<script th:src="@{../assets/js/popper.js}"></script>
+
+<!--Tooltip js-->
+<script th:src="@{../assets/js/tooltip.js}"></script>
+
+<!--Bootstrap.min js-->
+<script th:src="@{../assets/plugins/bootstrap/js/bootstrap.min.js}"></script>
+
+<!--Jquery.nicescroll.min js-->
+<script th:src="@{../assets/plugins/nicescroll/jquery.nicescroll.min.js}"></script>
+
+<!--Scroll-up-bar.min js-->
+<script th:src="@{../assets/plugins/scroll-up-bar/dist/scroll-up-bar.min.js}"></script>
+
+<!--Sidemenu js-->
+<script th:src="@{../assets/plugins/toggle-menu/sidemenu.js}"></script>
+
+<!--mCustomScrollbar js-->
+<script th:src="@{../assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js}"></script>
+
+
+<!--Scripts js-->
+<script th:src="@{../assets/js/scripts.js}"></script>
+
+</body>
+</html>
