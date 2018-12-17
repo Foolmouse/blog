@@ -23,8 +23,6 @@
     <!--Sidemenu css-->
     <link rel="stylesheet" th:href="@{../assets/plugins/toggle-menu/sidemenu.css}">
 
-    <!--DataTables css-->
-    <link rel="stylesheet" th:href="@{../assets/plugins/Datatable/css/dataTables.bootstrap4.css}">
 
 
 </head>
@@ -222,7 +220,7 @@
                                         <ul class="pagination">
                                             <!-- 跳转第一页 -->
                                             <li class="page-item">
-                                                <a class="page-link" th:if="${isFirstPage}" href="javascript:void(0);">&laquo;</a>
+                                                <a class="page-link"  th:if="${isFirstPage}" href="javascript:void(0);">&laquo;</a>
                                                 <a class="page-link" th:if="${not isFirstPage}"
                                                    th:href="@{/portalLog/findPage(pageNum=1,pageSize=${pageSize})}">&laquo;</a>
                                             </li>
@@ -239,7 +237,7 @@
                                                 th:each="pageNo : ${#numbers.sequence(1, totalPages)}">
                                                 <a class="page-link" th:if="${pageNum eq pageNo}"
                                                    href="javascript:void(0);">
-                                                    <span th:text="${pageNo}"></span>
+                                                    <b><span th:text="${pageNo}"></span></b>
                                                 </a>
 
                                                 <a class="page-link" th:if="${not (pageNum eq pageNo)}"
@@ -257,7 +255,7 @@
 
                                             <!-- 跳转最后一页 -->
                                             <li class="page-item">
-                                                <a class="page-link" th:if="${isLastPage}" href="javascript:void(0);">&raquo;</a>
+                                                <a class="page-link"  th:if="${isLastPage}" href="javascript:void(0);">&raquo;</a>
                                                 <a class="page-link" th:if="${not isLastPage}"
                                                    th:href="@{/portalLog/findPage(pageNum=${totalPages},pageSize=${pageSize})}">&raquo;</a>
                                             </li>
