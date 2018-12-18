@@ -1,7 +1,7 @@
 package com.hanslaser.blog.controller;
 
-import com.hanslaser.blog.entity.PortalLog;
-import com.hanslaser.blog.service.PortalLogService;
+import com.hanslaser.blog.entity.LoginLog;
+import com.hanslaser.blog.service.LoginLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -11,23 +11,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * PortalLog's controller
+ * controller for manager User
  *
  * @author LuoJu
- * @since 2018.10.11
+ * @since 2018.12.18
  */
 @Controller
-@RequestMapping("/portalLog")
-public class PortalLogController {
+@RequestMapping("/loginLog")
+public class LoginLogController {
 
-    private final static String PORTALLOG_LIST = "portalLog";
+    private final static String PORTALLOG_LIST = "loginLog";
 
     @Autowired
-    private PortalLogService portalLogService;
+    private LoginLogService loginLogService;
 
     @RequestMapping(value = "/findPage", method = RequestMethod.GET)
     public String getAllBlog(ModelMap map, @RequestParam(required = false, defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "10") Integer pageSize) {
-        Page<PortalLog> page = portalLogService.findByPage(pageNum - 1, pageSize);
+        Page<LoginLog> page = loginLogService.findByPage(pageNum - 1, pageSize);
         //总条数
         map.put("total", page.getTotalElements());
         //每页数量
@@ -42,8 +42,7 @@ public class PortalLogController {
         map.put("isFirstPage", page.isFirst());
         //是否最后一页
         map.put("isLastPage", page.isLast());
-
-
+        loginLogService.countStartEndPage(map, page.getTotalPages(), pageNum);
         return PORTALLOG_LIST;
     }
 

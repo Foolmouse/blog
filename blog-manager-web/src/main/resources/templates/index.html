@@ -47,12 +47,14 @@
 				<!-- 上方导航栏 -->
 				<nav class="navbar navbar-expand-lg main-navbar">
 					<a class="header-brand" th:href="@{index.html}">
-						<img th:src="@{assets/img/brand/logo.png}" class="header-brand-img" alt="Kharna-Admin  logo">
+						<img th:src="@{/assets/img/brand/logo.png}" class="header-brand-img" alt="Manager  logo">
 					</a>
 					<form class="form-inline mr-auto">
 						<ul class="navbar-nav mr-3">
-							<li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="ion ion-navicon-round"></i></a></li>
-							<li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-md-none navsearch"><i class="ion ion-search"></i></a></li>
+							<li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i
+									class="ion ion-navicon-round"></i></a></li>
+							<li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-md-none navsearch"><i
+									class="ion ion-search"></i></a></li>
 						</ul>
 						<div class="search-element">
 							<input class="form-control" type="search" placeholder="Search" aria-label="Search">
@@ -60,7 +62,9 @@
 						</div>
 					</form>
 					<ul class="navbar-nav navbar-right">
-						<li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="ion-ios-email-outline"></i></a>
+						<li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
+																	 class="nav-link notification-toggle nav-link-lg beep"><i
+								class="ion-ios-email-outline"></i></a>
 							<div class="dropdown-menu dropdown-list dropdown-menu-right">
 								<div class="dropdown-header">Messages
 									<div class="float-right">
@@ -69,7 +73,8 @@
 								</div>
 								<div class="dropdown-list-content">
 									<a href="#" class="dropdown-item dropdown-item-unread">
-										<img alt="image" th:src="@{assets/img/avatar/avatar-1.jpeg.jpg}" class="rounded-circle dropdown-item-img">
+										<img alt="image" th:src="@{assets/img/avatar/avatar-1.jpg}"
+											 class="rounded-circle dropdown-item-img">
 										<div class="dropdown-item-desc">
 											<div class="dropdownmsg d-flex">
 												<div class="">
@@ -83,7 +88,9 @@
 								</div>
 							</div>
 						</li>
-						<li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link  nav-link-lg beep"><i class="ion-ios-bell-outline"></i></a>
+						<li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
+																	 class="nav-link  nav-link-lg beep"><i
+								class="ion-ios-bell-outline"></i></a>
 							<div class="dropdown-menu dropdown-list dropdown-menu-right">
 								<div class="dropdown-header">Notifications
 									<div class="float-right">
@@ -102,12 +109,13 @@
 						</li>
 						<li class="dropdown dropdown-list-toggle">
 							<a href="#" class="nav-link nav-link-lg full-screen-link">
-								<i class="ion-arrow-expand"  id="fullscreen-button"></i>
+								<i class="ion-arrow-expand" id="fullscreen-button"></i>
 							</a>
 						</li>
 						<li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg">
-							<img th:src="@{assets/img/avatar/avatar-1.jpeg.jpg}" alt="profile-user" class="rounded-circle w-32">
-							<div class="d-sm-none d-lg-inline-block">Jessica Lee</div></a>
+							<img th:src="@{/assets/img/avatar/avatar-1.jpg}" alt="profile-user" class="rounded-circle w-32">
+							<div class="d-sm-none d-lg-inline-block">Dunk Luo</div>
+						</a>
 							<div class="dropdown-menu dropdown-menu-right">
 								<a href="profile.html" class="dropdown-item has-icon">
 									<i class="ion ion-android-person"></i> Profile
@@ -129,50 +137,51 @@
 				<!-- 左侧导航栏 -->
 				<aside class="app-sidebar">
 					<div class="app-sidebar__user">
-					    <div class="dropdown">
+						<div class="dropdown">
 							<a class="nav-link pl-2 pr-2 leading-none d-flex" data-toggle="dropdown" href="#">
-								<img alt="image" th:src="@{assets/img/avatar/avatar-1.jpeg.jpg}" class=" avatar-md rounded-circle">
+								<img alt="image" th:src="@{/assets/img/avatar/avatar-1.jpg}" class=" avatar-md rounded-circle">
 								<span class="ml-2 d-lg-block">
-									<span class="text-white app-sidebar__user-name mt-5">Jessica Lee</span><br>
-									<span class="text-muted app-sidebar__user-name text-sm"> Web-Designer</span>
+									<span class="text-white app-sidebar__user-name mt-5">Dunk Luo</span><br>
+									<span class="text-muted app-sidebar__user-name text-sm">web developer</span>
 								</span>
 							</a>
 						</div>
 					</div>
 					<ul class="side-menu">
 						<li class="slide">
-							<a class="side-menu__item"  data-toggle="slide" href="#"><i class="side-menu__icon fa fa-desktop"></i><span class="side-menu__label">Dashboard</span><i class="angle fa fa-angle-right"></i></a>
+							<a class="side-menu__item" data-toggle="slide" href="#"><i
+									class="side-menu__icon fa fa-desktop"></i><span class="side-menu__label">操作板</span><i
+									class="angle fa fa-angle-right"></i></a>
 							<ul class="slide-menu">
-								<li><a class="slide-item"  href="index.html"><span>Dashboard 01</span></a></li>
-								<li><a class="slide-item" href="index2.html"><span>Dashboard 02</span></a></li>
-								<li><a class="slide-item" href="index3.html"><span>Dashboard 03</span></a></li>
+								<li><a class="slide-item" href="/index"><span>首页</span></a></li>
 							</ul>
 						</li>
 						<li class="slide">
-							<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-table"></i><span class="side-menu__label">Tables</span><i class="angle fa fa-angle-right"></i></a>
+							<a class="side-menu__item" data-toggle="slide" href="#"><i
+									class="side-menu__icon fa fa-table"></i><span class="side-menu__label">日志</span><i
+									class="angle fa fa-angle-right"></i></a>
 							<ul class="slide-menu">
 								<li><a href="/index/portalLog" class="slide-item">门户访问日志</a></li>
 								<li><a href="/index/loginLog" class="slide-item">后台操作日志</a></li>
 							</ul>
 						</li>
 						<li class="slide">
-							<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-file-text"></i><span class="side-menu__label">Forms</span><i class="angle fa fa-angle-right"></i></a>
+							<a class="side-menu__item" data-toggle="slide" href="#"><i
+									class="side-menu__icon fa fa-file-text"></i><span class="side-menu__label">博客</span><i
+									class="angle fa fa-angle-right"></i></a>
 							<ul class="slide-menu">
 								<li><a href="/index/addBlog" class="slide-item">添加博客</a></li>
 								<li><a href="/index/blogList" class="slide-item">博客管理</a></li>
-								<li><a href="formadvanced.html" class="slide-item"> Advanced Form</a></li>
-								<li><a href="formeditor.html" class="slide-item"> Form Editor</a></li>
 							</ul>
 						</li>
-
 					</ul>
 				</aside>
 
 				<div class="app-content">
 					<section class="section">
                     	<ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#" class="text-muted">Home</a></li>
-                            <li class="breadcrumb-item active text-" aria-current="page">Dashboard 01</li>
+                            <li class="breadcrumb-item"><a href="#" class="text-muted">操作板</a></li>
+                            <li class="breadcrumb-item active text-" aria-current="page">首页</li>
                         </ol>
 
 						<div class="row">

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * @author LuoJu
@@ -20,6 +21,8 @@ import javax.servlet.http.HttpServletRequest;
 @Service
 @Transactional
 public class PortalLogServiceImpl implements PortalLogService {
+
+    private int pageLimit = 5;
 
     @Autowired
     PortalLogRepository logRepository;
@@ -40,6 +43,25 @@ public class PortalLogServiceImpl implements PortalLogService {
         PageRequest request = new PageRequest(currentPage, pageSize, Sort.Direction.DESC, "requestDateTime");
         Page<PortalLog> page = logRepository.findAll(request);
         return page;
+    }
+
+    @Override
+    public void countStartEndPage(Map map, int pageTotal, int pageNum) {
+        if (pageNum <= pageLimit) {
+            map.put("startPage", 1);
+            if (pageTotal <= pageNum + pageLimit) {
+                map.put("endPage", pageTotal);
+            } else {
+                map.put("endPage", pageNum + pageLimit);
+            }
+        } else {
+            map.put("startPage", pageNum - pageLimit);
+            if (pageTotal <= pageNum + pageLimit) {
+                map.put("endPage", pageTotal);
+            } else {
+                map.put("endPage", pageNum + pageLimit);
+            }
+        }
     }
 
 }

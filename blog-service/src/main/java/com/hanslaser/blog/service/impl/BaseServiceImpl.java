@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -75,6 +76,25 @@ public abstract class BaseServiceImpl<T extends BaseModel> implements BaseServic
         PageRequest request = new PageRequest(currentPage, pageSize, Sort.Direction.DESC, "lastModifiedDatetime");
         Page<T> page = baseDAO.findAll(request);
         return page;
+    }
+
+    @Override
+    public void countStartEndPage(Map map, int pageTotal, int pageNum) {
+        if (pageNum <= pageLimit) {
+            map.put("startPage", 1);
+            if (pageTotal <= pageNum + pageLimit) {
+                map.put("endPage", pageTotal);
+            } else {
+                map.put("endPage", pageNum + pageLimit);
+            }
+        } else {
+            map.put("startPage", pageNum - pageLimit);
+            if (pageTotal <= pageNum + pageLimit) {
+                map.put("endPage", pageTotal);
+            } else {
+                map.put("endPage", pageNum + pageLimit);
+            }
+        }
     }
 
 }

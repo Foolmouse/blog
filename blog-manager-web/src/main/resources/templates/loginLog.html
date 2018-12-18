@@ -6,22 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>后台管理页面</title>
     <!--Favicon -->
-    <link rel="icon" th:href="@{../assets/img/favicon.ico}" type="image/x-icon"/>
+    <link rel="icon" th:href="@{/assets/img/favicon.ico}" type="image/x-icon"/>
 
     <!--Bootstrap.min css-->
-    <link rel="stylesheet" th:href="@{../assets/plugins/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/plugins/bootstrap/css/bootstrap.min.css}">
 
     <!--Icons css-->
-    <link rel="stylesheet" th:href="@{../assets/css/icons.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/icons.css}">
 
     <!--Style css-->
-    <link rel="stylesheet" th:href="@{../assets/css/style.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+    R
 
     <!--mCustomScrollbar css-->
-    <link rel="stylesheet" th:href="@{../assets/plugins/scroll-bar/jquery.mCustomScrollbar.css}">
+    <link rel="stylesheet" th:href="@{/assets/plugins/scroll-bar/jquery.mCustomScrollbar.css}">
 
     <!--Sidemenu css-->
-    <link rel="stylesheet" th:href="@{../assets/plugins/toggle-menu/sidemenu.css}">
+    <link rel="stylesheet" th:href="@{/assets/plugins/toggle-menu/sidemenu.css}">
 
 
 </head>
@@ -170,14 +171,14 @@
             <section class="section">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">日志</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">门户访问日志</li>
+                    <li class="breadcrumb-item active" aria-current="page">后台登录日志</li>
                 </ol>
 
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>门户访问记录</h4>
+                                <h4>后台登录日志</h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -186,28 +187,28 @@
                                         <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>博客名</th>
+                                            <th>用户名</th>
+                                            <th>登录状态</th>
                                             <th>IP地址</th>
-                                            <th>请求方式</th>
-                                            <th>访问时间</th>
                                             <th>浏览器信息</th>
+                                            <th>请求方式</th>
+                                            <th>登录时间</th>
                                             <th>错误信息</th>
                                         </tr>
 
                                         </thead>
                                         <tbody>
 
-                                        <tr th:each="portalLog : ${content}">
-                                            <th scope="row" th:text="${portalLog.id}"></th>
-                                            <td th:text="${portalLog.blogName}"></td>
-                                            <td th:text="${portalLog.ip}"></td>
-                                            <td th:text="${portalLog.method}"></td>
-                                            <td th:text="${portalLog.requestDateTime}"></td>
-                                            <td th:text="${portalLog.userAgent}"></td>
-                                            <td th:text="${portalLog.errorMessage}"></td>
+                                        <tr th:each="loginLog : ${content}">
+                                            <th scope="row" th:text="${loginLog.id}"></th>
+                                            <td th:text="${loginLog.userName}"></td>
+                                            <td th:text="${loginLog.isLoginSuccess}"></td>
+                                            <td th:text="${loginLog.ip}"></td>
+                                            <td th:text="${loginLog.browserInfo}"></td>
+                                            <td th:text="${loginLog.method}"></td>
+                                            <td th:text="${loginLog.loginDateTime}"></td>
+                                            <td th:text="${loginLog.errorMessage}"></td>
                                         </tr>
-
-
                                         </tbody>
                                     </table>
 
@@ -217,34 +218,35 @@
                                             <li class="page-item">
                                                 <a class="page-link" th:if="${isFirstPage}" href="javascript:void(0);">&laquo;</a>
                                                 <a class="page-link" th:if="${not isFirstPage}"
-                                                   th:href="@{/portalLog/findPage(pageNum=1,pageSize=${pageSize})}">&laquo;</a>
+                                                   th:href="@{/loginLog/findPage(pageNum=1,pageSize=${pageSize})}">&laquo;</a>
                                             </li>
 
                                             <!-- 跳转上一页 -->
                                             <li class="page-item">
                                                 <a class="page-link" th:if="${not isFirstPage}"
-                                                   th:href="@{/portalLog/findPage(pageNum=${pageNum-1},pageSize=${pageSize})}">Previous</a>
+                                                   th:href="@{/loginLog/findPage(pageNum=${pageNum-1},pageSize=${pageSize})}">Previous</a>
                                                 <a class="page-link" th:if="${isFirstPage}" href="javascript:void(0);">Previous</a>
                                             </li>
 
                                             <!-- 遍历中间页面 -->
                                             <li class="page-item"
-                                                th:each="pageNo : ${#numbers.sequence(1, totalPages)}">
+                                                th:each="pageNo : ${#numbers.sequence(startPage, endPage)}">
                                                 <a class="page-link" th:if="${pageNum eq pageNo}"
                                                    href="javascript:void(0);">
                                                     <b><span th:text="${pageNo}"></span></b>
                                                 </a>
 
                                                 <a class="page-link" th:if="${not (pageNum eq pageNo)}"
-                                                   th:href="@{/portalLog/findPage(pageNum=${pageNo},pageSize=${pageSize})}">
+                                                   th:href="@{/loginLog/findPage(pageNum=${pageNo},pageSize=${pageSize})}">
                                                     <span th:text="${pageNo}"></span>
                                                 </a>
                                             </li>
 
+
                                             <!-- 跳转下一页 -->
                                             <li class="page-item">
                                                 <a class="page-link" th:if="${not isLastPage}"
-                                                   th:href="@{/portalLog/findPage(pageNum=${pageNum+1},pageSize=${pageSize})}">Next</a>
+                                                   th:href="@{/loginLog/findPage(pageNum=${pageNum+1},pageSize=${pageSize})}">Next</a>
                                                 <a class="page-link" th:if="${isLastPage}" href="javascript:void(0);">Next</a>
                                             </li>
 
@@ -252,7 +254,7 @@
                                             <li class="page-item">
                                                 <a class="page-link" th:if="${isLastPage}" href="javascript:void(0);">&raquo;</a>
                                                 <a class="page-link" th:if="${not isLastPage}"
-                                                   th:href="@{/portalLog/findPage(pageNum=${totalPages},pageSize=${pageSize})}">&raquo;</a>
+                                                   th:href="@{/loginLog/findPage(pageNum=${totalPages},pageSize=${pageSize})}">&raquo;</a>
                                             </li>
                                         </ul>
                                     </nav>
@@ -272,37 +274,37 @@
                 Copyright &copy;Kharna-Admin 2018. Design By<a href="https://spruko.com/"> Spruko</a>
             </div>
         </footer>
-
+        R
     </div>
 </div>
 
 <!--Jquery.min js-->
-<script th:src="@{../assets/js/jquery.min.js}"></script>
+<script th:src="@{/assets/js/jquery.min.js}"></script>
 
 <!--popper js-->
-<script th:src="@{../assets/js/popper.js}"></script>
+<script th:src="@{/assets/js/popper.js}"></script>
 
 <!--Tooltip js-->
-<script th:src="@{../assets/js/tooltip.js}"></script>
+<script th:src="@{/assets/js/tooltip.js}"></script>
 
 <!--Bootstrap.min js-->
-<script th:src="@{../assets/plugins/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/assets/plugins/bootstrap/js/bootstrap.min.js}"></script>
 
 <!--Jquery.nicescroll.min js-->
-<script th:src="@{../assets/plugins/nicescroll/jquery.nicescroll.min.js}"></script>
+<script th:src="@{/assets/plugins/nicescroll/jquery.nicescroll.min.js}"></script>
 
 <!--Scroll-up-bar.min js-->
-<script th:src="@{../assets/plugins/scroll-up-bar/dist/scroll-up-bar.min.js}"></script>
+<script th:src="@{/assets/plugins/scroll-up-bar/dist/scroll-up-bar.min.js}"></script>
 
 <!--Sidemenu js-->
-<script th:src="@{../assets/plugins/toggle-menu/sidemenu.js}"></script>
+<script th:src="@{/assets/plugins/toggle-menu/sidemenu.js}"></script>
 
 <!--mCustomScrollbar js-->
-<script th:src="@{../assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js}"></script>
+<script th:src="@{/assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js}"></script>
 
 
 <!--Scripts js-->
-<script th:src="@{../assets/js/scripts.js}"></script>
+<script th:src="@{/assets/js/scripts.js}"></script>
 
 </body>
 </html>

@@ -2,6 +2,8 @@ package com.hanslaser.blog.service;
 
 import org.springframework.data.domain.Page;
 
+import java.util.Map;
+
 /**
  * service层通用接口
  *
@@ -30,5 +32,10 @@ public interface BaseService<T> {
      * @return
      */
     String buildWhereSql(T t1, T t2);
+
+    /**
+     * 放入开始分页和结束分页页码
+     */
+    void countStartEndPage(Map map, int pageTotal , int pageNum);
 
 }

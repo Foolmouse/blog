@@ -47,6 +47,11 @@ public class IndexController {
         return "redirect:/portalLog/findPage";
     }
 
+    @RequestMapping("/loginLog")
+    public String toLoginLog() {
+        return "redirect:/loginLog/findPage";
+    }
+
     @RequestMapping("/buttons")
     public String toButtons() {
         return "buttons";
