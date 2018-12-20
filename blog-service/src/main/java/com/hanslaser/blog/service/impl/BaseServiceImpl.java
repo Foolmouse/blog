@@ -26,6 +26,8 @@ public abstract class BaseServiceImpl<T extends BaseModel> implements BaseServic
 
     private JpaRepository baseDAO;
 
+    private int pageLimit = 5;
+
     public abstract void setBaseDAO();
 
     public void setBaseDAO(JpaRepository baseDao) {

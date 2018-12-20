@@ -4,7 +4,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Kharna-Admin Dashboard</title>
+    <title>后台管理</title>
 
     <!--Favicon -->R
     <link rel="icon" th:href="@{/favicon.ico}" type="image/x-icon"/>
@@ -288,16 +288,14 @@
     <script th:src="@{/ckeditor5-build-classic/ckeditor.js}"></script>
 
     <script>
-
-
         $(function () {
             // Ckeditor 5
-            var newVar = ClassicEditor.create(document.querySelector('#editor'));
-            newVar.then( editor => {
-                console.log( editor );
-            });
-
-
+            ClassicEditor.create(document.querySelector('#editor'), {
+                // extraPlugins: [MyCustomUploadAdapterPlugin]
+                ckfinder: {
+                    uploadUrl: '/image/loadImage'// 这个就是我上次的图片路径，我也不知道是不是这样配，但是我就是这样搞得，在后台可以接受到。
+                }
+            }).then().catch();
 
             var writer = $("#blog_writer").val();
             if (writer == '') {
@@ -311,5 +309,7 @@
             });
         });
     </script>
+
+
 </body>
 </html>
