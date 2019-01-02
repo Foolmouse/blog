@@ -19,7 +19,6 @@ import org.springframework.context.annotation.PropertySources;
 
 @SpringBootApplication
 @EnableCaching
-//@PropertySources({@PropertySource({"classpath:application-entity.yml"})})
 @ComponentScan(value = "com.hanslaser.blog")
 @EnableAutoConfiguration
 @ServletComponentScan("com.hanslaser.blog")

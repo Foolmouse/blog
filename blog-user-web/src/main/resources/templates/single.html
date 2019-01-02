@@ -27,8 +27,8 @@
     <link rel="stylesheet" th:href="@{../css/menu.css}">
     <link rel="stylesheet" th:href="@{../css/responsiveslides.css}">
     <link th:href="@{../font-awesome/css/font-awesome.min.css}" rel="stylesheet" type="text/css">
-    <script th:src="@{../js/jquery183.min.js}"></script>
-    <script th:src="@{../js/responsiveslides.min.js}"></script>
+    <script th:src="@{/js/jquery183.min.js}"></script>
+    <script th:src="@{/js/responsiveslides.min.js}"></script>
     <script>
         // You can also use "$(window).load(function() {"
         $(function () {
@@ -52,15 +52,15 @@
     <!--[if lt IE 8]>
     <div style=' clear: both; text-align:center; position: relative;'>
         <a th:href="@{http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode}">
-            <img th:src="@{http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg}" border="0"
+            <img th:src="@{tp://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg}" border="0"
                  height="42" width="820"
                  alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."/>
         </a>
     </div>
     <![endif]-->
     <!--[if lt IE 9]>
-    <script th:src="@{js/html5.js}"></script>
-    <script th:src="@{js/css3-mediaqueries.js}"></script>
+    <script th:src="@{/html5.js}"></script>
+    <script th:src="@{/css3-mediaqueries.js}"></script>
     <![endif]-->
 
 </head>
@@ -118,7 +118,7 @@
                 <div class="row">
                     <div class="col-full t-center">
                         <div class="wrap-col">
-                            <div class="logo"><a href="#"><img th:src="{../images/logo.png}"/></a></div>
+                            <div class="logo"><a href="#"><img th:src="@{mages/logo.png}"/></a></div>
                             <div class="tagline">Temporibus autem quibusdam et aut officiis</div>
                         </div>
                     </div>
@@ -145,7 +145,7 @@
                                     </div>
                                     <span>Posted on November 12, 2015</span>
                                 </div>
-                                <img th:src="{images/1.jpg}" alt="图挂了"/>
+                                <img th:src="@{ages/1.jpg}" alt="图挂了"/>
 
                                 <div class="art-content">
                                     <div class="excerpt" th:utext="${blog.content}"></div>
@@ -164,7 +164,7 @@
                                 <h5>ABOUT ME</h5>
                             </div>
                             <div class="wid-content">
-                                <img th:src="@{../images/10.jpg}"/>
+                                <img th:src="@{mages/10.jpg}"/>
                                 <p>My name is Activello and I am an awesome WordPress blog theme for photography, food,
                                     travel and other blogs. I was created by colorlib.</p>
                             </div>
@@ -194,7 +194,7 @@
                                 <div class="post">
                                     <div class="zoom-container">
                                         <a href="single.html">
-                                            <img th:src="@{../images/11.jpg}"/>
+                                            <img th:src="@{mages/11.jpg}"/>
                                         </a>
                                     </div>
                                     <div class="wrapper">
@@ -209,7 +209,7 @@
                                 <div class="post">
                                     <div class="zoom-container">
                                         <a href="single.html">
-                                            <img th:src="@{../images/12.jpg}"/>
+                                            <img th:src="@{mages/12.jpg}"/>
                                         </a>
                                     </div>
                                     <div class="wrapper">
@@ -224,7 +224,7 @@
                                 <div class="post">
                                     <div class="zoom-container">
                                         <a href="single.html">
-                                            <img th:src="@{../images/13.jpg}"/>
+                                            <img th:src="@{/images/13.jpg}"/>
                                         </a>
                                     </div>
                                     <div class="wrapper">
@@ -239,7 +239,7 @@
                                 <div class="post">
                                     <div class="zoom-container">
                                         <a href="single.html">
-                                            <img th:src="@{../images/14.jpg}"/>
+                                            <img th:src="@{mages/14.jpg}"/>
                                         </a>
                                     </div>
                                     <div class="wrapper">
@@ -292,23 +292,23 @@
                                 <div class="row">
                                     <div class="col-1-3">
                                         <div class="wrap-col">
-                                            <a href="#"><img th:src="@{../images/15.jpg}"/></a>
-                                            <a href="#"><img th:src="@{../images/16.jpg}"/></a>
-                                            <a href="#"><img th:src="@{../images/17.jpg}"/></a>
+                                            <a href="#"><img th:src="@{/images/15.jpg}"/></a>
+                                            <a href="#"><img th:src="@{/images/16.jpg}"/></a>
+                                            <a href="#"><img th:src="@{/images/17.jpg}"/></a>
                                         </div>
                                     </div>
                                     <div class="col-1-3">
                                         <div class="wrap-col">
-                                            <a href="#"><img th:src="@{../images/18.jpg}"/></a>
-                                            <a href="#"><img th:src="@{../images/19.jpg}"/></a>
-                                            <a href="#"><img th:src="@{../images/20.jpg}"/></a>
+                                            <a href="#"><img th:src="@{/images/18.jpg}"/></a>
+                                            <a href="#"><img th:src="@{/images/19.jpg}"/></a>
+                                            <a href="#"><img th:src="@{/images/20.jpg}"/></a>
                                         </div>
                                     </div>
                                     <div class="col-1-3">
                                         <div class="wrap-col">
-                                            <a href="#"><img th:src="@{../images/21.jpg}"/></a>
-                                            <a href="#"><img th:src="@{../images/22.jpg}"/></a>
-                                            <a href="#"><img th:src="@{../images/23.jpg}"/></a>
+                                            <a href="#"><img th:src="@{/images/21.jpg}"/></a>
+                                            <a href="#"><img th:src="@{/images/22.jpg}"/></a>
+                                            <a href="#"><img th:src="@{/images/23.jpg}"/></a>
                                         </div>
                                     </div>
                                 </div>
