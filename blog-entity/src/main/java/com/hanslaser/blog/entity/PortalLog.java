@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * @since 2018.11.14
  */
 @Entity
-@Table
+@Table(name = "portal_log")
 public class PortalLog {
 
     @Id

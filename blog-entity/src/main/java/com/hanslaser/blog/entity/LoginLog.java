@@ -10,7 +10,7 @@ import java.sql.Timestamp;
  * @since 2018.10.31
  */
 @Entity
-@Table
+@Table(name = "login_log")
 public class LoginLog {
 
     @Id

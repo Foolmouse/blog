@@ -13,7 +13,7 @@ import javax.persistence.Table;
  * @since 2018.10.31
  */
 @Entity
-@Table
+@Table(name = "blog")
 public class Blog extends BaseModel {
 
     @Column

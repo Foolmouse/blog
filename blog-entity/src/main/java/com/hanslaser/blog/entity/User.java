@@ -10,7 +10,7 @@ import java.sql.Date;
  * @since 2018.10.11
  */
 @Entity
-@Table
+@Table(name = "user")
 public class User extends BaseModel {
     /**
      * 用户编码.
