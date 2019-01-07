@@ -10,11 +10,11 @@
     <![endif]-->
     <title>罗炬的个人博客</title>
     <!-- BOOTSTRAP CORE STYLE CSS -->
-    <link th:href="@{../assets/css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{assets/css/bootstrap.css}" rel="stylesheet"/>
     <!-- FONTAWESOME STYLE CSS -->
-    <link th:href="@{../assets/css/font-awesome.css}" rel="stylesheet"/>
+    <link th:href="@{assets/css/font-awesome.css}" rel="stylesheet"/>
     <!-- CUSTOM STYLE CSS -->
-    <link th:href="@{../assets/css/style.css}" rel="stylesheet"/>
+    <link th:href="@{assets/css/style.css}" rel="stylesheet"/>
 
 </head>
 <body>
@@ -24,7 +24,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-2">
-                <img th:src="@{../assets/img/person.jpg}" class="img-circle img-responsive"/>
+                <img th:src="@{/assets/img/person.jpg}" class="img-circle img-responsive"/>
             </div>
             <div class="col-md-5 text-center">
                 <h1><strong>Luo Ju </strong></h1>
@@ -47,7 +47,7 @@
                 <span>My Sponsers: </span>
             </div>
             <div class="col-md-10">
-                <img th:src="@{../assets/img/clients.png}" alt="" class="img-rounded img-responsive"/>
+                <img th:src="@{/assets/img/clients.png}" alt="" class="img-rounded img-responsive"/>
             </div>
         </div>
     </div>
@@ -158,11 +158,11 @@
                     </li>
                     <li class="list-group-item">
                         <a href="#">
-                            <img th:src="{../assets/img/ad1.jpg}" class="img-responsive"/>
+                            <img th:src="@{/assets/img/ad1.jpg}" class="img-responsive"/>
                         </a>
                         <br/>
                         <a href="#">
-                            <img th:src="{../assets/img/ad2.jpg}" class="img-responsive"/>
+                            <img th:src="@{/assets/img/ad2.jpg}" class="img-responsive"/>
                         </a>
                     </li>
                 </ul>
