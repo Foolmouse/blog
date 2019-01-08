@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -70,21 +70,32 @@
                          </a>-->
                     <div class="blog-info">
                         <span class="label label-primary"
-                              th:text="${#dates.format(blog.createdDatetime,'yyyy-MM-dd hh:mm:ss')}">Posted on 26th November 2014</span>
+                              th:text="${#dates.format(blog.createdDatetime,'yyyy-MM-dd hh:mm:ss')}">2019.1.1</span>
 
                         <span th:switch="${blog.category}">
-                            <span th:case="1" class="label label-success" >生活类</span>
-                            <span th:case="2" class="label label-success" >技术类</span>
-                            <span th:case="3" class="label label-success" >闲谈</span>
+                            <span th:case="1" class="label label-success">生活类</span>
+                            <span th:case="2" class="label label-success">技术类</span>
+                            <span th:case="3" class="label label-success">闲谈</span>
                         </span>
-                        <span class="label label-danger" th:text="${blog.writer}">By Jhon</span>
+                        <span class="label label-danger" th:text="${blog.writer}">By LuoJu</span>
                         <span class="label label-info">
                                 <i class="fa fa-thumbs-up"></i>+0
                         <i class="fa fa-thumbs-down"></i>- 0
                             </span>
                     </div>
-                    <div class="blog-txt" th:utext="${blog.content}">
-                        博文没有内容...
+                    <div style="height: 210px">
+                        <span style="float:left;width: 40%">
+                        <img src="/uploadImages/1546916469879-Jellyfish.jpg"
+                             style="width: auto;height: auto;max-width: 100%;max-height: 200px;padding-right: 10px">
+                        </span>
+
+                        <!--<span class="blog-txt" th:utext="${blog.content}">-->
+                        <span class="blog-txt">
+                            I am a 23 years old guy who loves bloggging and advanced technology .
+                            I will provide all my works for free here with some good piece of information.
+                            I will provide all my works for free here with some good piece of information.
+                            You can send email to me DunkLuo@163.com
+                        </span>
                     </div>
                 </div>
 
@@ -190,7 +201,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 text-center set-foot">
-            &copy 2018 | More Information <a href="https://github.com/Foolmouse" target="_blank">罗炬的Github
+            &copy 2019 | More Information <a href="https://github.com/Foolmouse" target="_blank">罗炬的Github</a>
         </div>
     </div>
 </div>

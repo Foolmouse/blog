@@ -30,14 +30,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.formLogin().loginPage("/login.html").loginProcessingUrl("/login")
+        http.formLogin().loginPage("/login.html").loginProcessingUrl("/login").failureForwardUrl("/login.html")
                 .successHandler(mySuccessHandler())
                 .failureHandler(myFailureHandler());
 
         http.logout()
                 .and()
                 .authorizeRequests()        // 定义哪些URL需要被保护、哪些不需要被保护
-                .antMatchers("/**")
+                .antMatchers("/login.html", "/forgetPassword.html", "/modifyPassword.html",
+                        "/sendEmailWithVerifyCode", "/resetUserPassword",
+                        "/uploadImages/**", "/css/**", "/images/**", "/js/**")
                 .permitAll()
                 .anyRequest()               // 任何请求,登录后可以访问
                 .authenticated()

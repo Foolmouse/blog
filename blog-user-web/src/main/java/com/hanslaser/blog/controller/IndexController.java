@@ -29,7 +29,7 @@ public class IndexController {
     private PortalLogService logService;
 
     @RequestMapping("/")
-    public String toIndex() {
+    public String toIndex( HttpServletRequest request) {
         return REDIRECT_INDEX;
     }
 

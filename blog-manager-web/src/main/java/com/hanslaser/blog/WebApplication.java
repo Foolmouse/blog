@@ -10,6 +10,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
+ * manager module
  * @author LuoJu_123855
  * @since 2018.10.10
  */

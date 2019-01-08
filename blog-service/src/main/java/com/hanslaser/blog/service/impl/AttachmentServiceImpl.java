@@ -17,22 +17,25 @@ import java.util.Map;
 @Service
 public class AttachmentServiceImpl implements AttachmentService {
 
-    private static final String CK_IMAGE_PATH = File.separator + "uploadImage";
+    private static final String WINDOWS_UPLOAD_PATH = "E:\\uploadImages";
+    private static final String LINUX_UPLOAD_PATH = "/home/uploadImages";
+    //对应tomcat配置中的虚拟路径
+    private static final String VIRTUAL_PATH = "/uploadImages";
 
     @Override
     public Map<String, String> ckEditorUploadImage(MultipartFile file, HttpServletRequest request) {
-        if(file==null || "".equals(file.getOriginalFilename().trim())) {
+        if (file == null || "".equals(file.getOriginalFilename().trim())) {
             return generateResult(false, "#");
         }
         String originalName = file.getOriginalFilename();
         // generate file name
         String localFileName = System.currentTimeMillis() + "-" + originalName;
         // get project path
+        // 这里不适用项目路径,使用配置的虚拟路径
         String projectRealPath = request.getSession().getServletContext().getRealPath("");
-        // get the real path to store received images
-        String realPath = projectRealPath + CK_IMAGE_PATH;
+        String realPath = isWhichSystem();
         File imageDir = new File(realPath);
-        if(!imageDir.exists()) {
+        if (!imageDir.exists()) {
             imageDir.mkdirs();
         }
 
@@ -46,7 +49,7 @@ public class AttachmentServiceImpl implements AttachmentService {
             e.printStackTrace();
             // log here
         }
-        String imageContextPath = request.getContextPath() + "/uploadImage" + "/" + localFileName;
+        String imageContextPath = request.getContextPath() + VIRTUAL_PATH + "/" + localFileName;
         // log here +
         System.out.println("received file original name: " + originalName);
         System.out.println("stored local file name: " + localFileName);
@@ -56,11 +59,23 @@ public class AttachmentServiceImpl implements AttachmentService {
         return generateResult(true, imageContextPath);
     }
 
-    private Map<String, String> generateResult(boolean uploaded, String relativeUrl){
+    private Map<String, String> generateResult(boolean uploaded, String relativeUrl) {
         Map<String, String> result = new HashMap<String, String>();
         result.put("uploaded", uploaded + "");
         result.put("url", relativeUrl);
 
         return result;
     }
+
+    private String isWhichSystem() {
+        String osName = System.getProperties().getProperty("os.name");
+        if (osName.equals("Linux")) {
+            System.out.println(">>>>>>>>>>>>>>>>>>running in Linux>>>>>>>>>>>>>>>>>>");
+            return LINUX_UPLOAD_PATH;
+        } else {
+            System.out.println(">>>>>>>>>>>>>>>>>>don't running in Linux>>>>>>>>>>>>>>>>>>");
+            return WINDOWS_UPLOAD_PATH;
+        }
+    }
+
 }

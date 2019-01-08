@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
- * 图片上传下载接口
+ * 图片上传接口
  *
  * @author LuoJu
  * @since 2018.12.19
@@ -25,6 +25,13 @@ public class ImageController {
     @Autowired
     private AttachmentService attachmentService;
 
+    /**
+     * 当ckEditor选中一张图片后,会触发ajax事件,将图片上传至此接口
+     *
+     * @param file
+     * @param request
+     * @return
+     */
     @PostMapping("/loadImage")
     @ResponseBody
     public Map updateMaterial(@RequestParam("upload") MultipartFile file, HttpServletRequest request) {
