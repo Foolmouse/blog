@@ -28,6 +28,20 @@ public class Blog extends BaseModel {
     @Column
     private Integer category;
 
+    /**
+     * 封面图片路径
+     */
+    @Column
+    private String cover;
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
+
     public String getWriter() {
         return writer;
     }

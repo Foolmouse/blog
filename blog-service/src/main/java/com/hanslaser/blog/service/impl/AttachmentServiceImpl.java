@@ -7,10 +7,14 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * desc: save images
+ *
  * @author LuoJu
  * @since 2018.12.20
  */
@@ -29,7 +33,9 @@ public class AttachmentServiceImpl implements AttachmentService {
         }
         String originalName = file.getOriginalFilename();
         // generate file name
-        String localFileName = System.currentTimeMillis() + "-" + originalName;
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMhh");
+
+        String localFileName = format.format(new Date()) + "-" + System.currentTimeMillis() + "-" + originalName;
         // get project path
         // 这里不适用项目路径,使用配置的虚拟路径
         String projectRealPath = request.getSession().getServletContext().getRealPath("");

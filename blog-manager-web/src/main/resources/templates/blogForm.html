@@ -64,7 +64,7 @@
                         </div>
                         <div class="dropdown-list-content">
                             <a href="#" class="dropdown-item dropdown-item-unread">
-                                <img alt="image" th:src="@{assets/img/avatar/avatar-1.jpg}"
+                                <img alt="image" th:src="@{/assets/img/avatar/avatar-1.jpg}"
                                      class="rounded-circle dropdown-item-img">
                                 <div class="dropdown-item-desc">
                                     <div class="dropdownmsg d-flex">
@@ -207,11 +207,20 @@
                                         <select class="form-control" th:field="*{blog.category}" id="sel"></select>
                                     </div>
                                 </div>
+
+                                <div class="form-group row">
+                                    <label class="col-md-1 col-form-label">封面图片</label>
+                                    <div class="col-md-9">
+                                        <textarea class="form-control" th:field="*{blog.cover}" rows="12"
+                                                  id="editor_cover">这是封面图片</textarea>
+                                    </div>
+                                </div>
+
                                 <div class="form-group row">
                                     <label class="col-md-1 col-form-label">内容</label>
                                     <div class="col-md-9">
                                         <textarea class="form-control" th:field="*{blog.content}" rows="12"
-                                                  id="editor">Hiiiii.....</textarea>
+                                                  id="editor_content">Hiiiii.....</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -269,7 +278,7 @@
     <!--Bootstrap.min js-->
     <script th:src="@{/assets/plugins/bootstrap/js/bootstrap.min.js}"></script>
 
-    Jquery.nicescroll.min js
+    <!--Jquery.nicescroll.min js-->
     <script th:src="@{/assets/plugins/nicescroll/jquery.nicescroll.min.js}"></script>
 
     <!--Scroll-up-bar.min js-->
@@ -289,11 +298,17 @@
 
     <script>
         $(function () {
-            // Ckeditor 5
-            ClassicEditor.create(document.querySelector('#editor'), {
+            ClassicEditor.create(document.querySelector('#editor_cover'), {
                 // extraPlugins: [MyCustomUploadAdapterPlugin]
                 ckfinder: {
-                    uploadUrl: '/image/loadImage'// 这个就是我上次的图片路径，我也不知道是不是这样配，但是我就是这样搞得，在后台可以接受到。
+                    uploadUrl: '/image/loadImage'
+                }
+            });
+
+            ClassicEditor.create(document.querySelector('#editor_content'), {
+                // extraPlugins: [MyCustomUploadAdapterPlugin]
+                ckfinder: {
+                    uploadUrl: '/image/loadImage'
                 }
             }).then().catch();
 

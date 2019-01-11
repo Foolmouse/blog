@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 
 /**
+ * portal module
+ *
  * @author LuoJu
  * @since 2018.11.07
  */
@@ -44,6 +46,9 @@ public class IndexController {
         //总页数
         map.put("totalPages", page.getTotalPages());
         //内容
+        for (Blog b : page.getContent()) {
+            b.setContent(b.getContent().substring(0,100));
+        }
         map.put("blogList", page.getContent());
         //当前页
         map.put("pageNum", pageNum);
