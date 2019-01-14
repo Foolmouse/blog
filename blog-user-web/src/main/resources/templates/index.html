@@ -85,17 +85,12 @@
                     </div>
                     <div style="height: 210px">
                         <span style="float:left;width: 40%">
-                        <img src="/uploadImages/1546916469879-Jellyfish.jpg"
-                             style="width: auto;height: auto;max-width: 100%;max-height: 200px;padding-right: 10px">
+                        <img th:src="${blog.cover}"
+                             style="width: auto;height: auto;max-height: 200px;padding-right: 10px">
                         </span>
 
-                        <!--<span class="blog-txt" th:utext="${blog.content}">-->
-                        <span class="blog-txt">
-                            I am a 23 years old guy who loves bloggging and advanced technology .
-                            I will provide all my works for free here with some good piece of information.
-                            I will provide all my works for free here with some good piece of information.
-                            You can send email to me DunkLuo@163.com
-                        </span>
+                        <span class="blog-txt" th:text="${blog.content}">
+
                     </div>
                 </div>
 

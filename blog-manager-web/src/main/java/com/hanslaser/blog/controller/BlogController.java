@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 此controller用于处理blog的crud请求,返回视图名因为其他controller不会用到,可通过常量定义在此类中,不需要定义全局变量
  *
@@ -77,24 +80,31 @@ public class BlogController {
      * 获取所有blogList
      */
     @RequestMapping(value = "/findPage", method = RequestMethod.GET)
-    public String getAllBlog(ModelMap map, @RequestParam(required = false,defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "5") Integer pageSize){
-        Page<Blog> page = blogService.findByPage(pageNum-1, pageSize);
+    public String getAllBlog(ModelMap map, @RequestParam(required = false, defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "5") Integer pageSize) {
+        Page<Blog> page = blogService.findByPage(pageNum - 1, pageSize);
         //总条数
-        map.put("total" , page.getTotalElements());
+        map.put("total", page.getTotalElements());
         //每页数量
-        map.put("pageSize" , pageSize);
+        map.put("pageSize", pageSize);
         //总页数
-        map.put("totalPages" , page.getTotalPages());
+        map.put("totalPages", page.getTotalPages());
         //内容
-        map.put("content", page.getContent());
+        List<Blog> content = page.getContent();
+        List<Object> newContent = new ArrayList<>();
+        for (int i = content.size() - 1; i >= 0; i--) {
+            if (content.get(i).getDr() == null) {
+                newContent.add(content.get(i));
+            }
+        }
+        map.put("content", newContent);
         //当前页
-        map.put("pageNum" , pageNum);
+        map.put("pageNum", pageNum);
 
         //是否第一页
-        map.put("isFirstPage" , page.isFirst());
+        map.put("isFirstPage", page.isFirst());
         //是否最后一页
-        map.put("isLastPage" , page.isLast());
+        map.put("isLastPage", page.isLast());
         return BLOG_LIST;
-}
+    }
 
 }

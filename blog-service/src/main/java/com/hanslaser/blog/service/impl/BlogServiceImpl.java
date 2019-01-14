@@ -8,10 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author LuoJu
@@ -26,9 +30,23 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Blog create(Blog blog) {
+        //处理截取图片展示图路径
+        if (!StringUtils.isEmpty(blog.getCover())) {
+            blog.setCover(handleCoverPath(blog.getCover()));
+        }
         blog.setCreatedDatetime(com.hanslaser.blog.util.DateUtils.getTimestamp());
         blog.setLastModifiedDatetime(com.hanslaser.blog.util.DateUtils.getTimestamp());
         return blogRepository.save(blog);
+    }
+
+    private String handleCoverPath(String cover) {
+        String pattern = AttachmentServiceImpl.VIRTUAL_PATH + "(.*?)(\\.(.{3}))";
+        Pattern compile = Pattern.compile(pattern);
+        Matcher matcher = compile.matcher(cover);
+        if (matcher.find()) {
+            return matcher.group();
+        }
+        throw new RuntimeException("路径错误,请检查图片格式或者路径");
     }
 
     @Override

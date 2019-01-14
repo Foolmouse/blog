@@ -24,7 +24,7 @@ public class AttachmentServiceImpl implements AttachmentService {
     private static final String WINDOWS_UPLOAD_PATH = "E:\\uploadImages";
     private static final String LINUX_UPLOAD_PATH = "/home/uploadImages";
     //对应tomcat配置中的虚拟路径
-    private static final String VIRTUAL_PATH = "/uploadImages";
+    public static final String VIRTUAL_PATH = "/uploadImages";
 
     @Override
     public Map<String, String> ckEditorUploadImage(MultipartFile file, HttpServletRequest request) {
@@ -83,5 +83,7 @@ public class AttachmentServiceImpl implements AttachmentService {
             return WINDOWS_UPLOAD_PATH;
         }
     }
+
+
 
 }
