@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.sql.Timestamp;
 import java.util.Map;
@@ -48,9 +49,23 @@ public abstract class BaseServiceImpl<T extends BaseModel> implements BaseServic
         if (optional.isPresent()) {
             BaseModel model = (BaseModel) optional.get();
             model.setLastModifiedDatetime(new Timestamp(System.currentTimeMillis()));
-            baseDAO.delete(model);
+
+            //baseDAO.delete(model);
+
+            model.setDr(1);
+            baseDAO.save(model);
         } else {
             throw new BlogException("id不存在");
+        }
+    }
+
+    @Override
+    public void delete(String ids) {
+        if (!StringUtils.isEmpty(ids)) {
+            String[] arrIds = ids.split(",");
+            for (String arrId : arrIds) {
+                delete(Long.parseLong(arrId));
+            }
         }
     }
 
