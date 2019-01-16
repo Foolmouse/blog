@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * portal module
@@ -31,7 +33,7 @@ public class IndexController {
     private PortalLogService logService;
 
     @RequestMapping("/")
-    public String toIndex( HttpServletRequest request) {
+    public String toIndex(HttpServletRequest request) {
         return REDIRECT_INDEX;
     }
 
@@ -46,10 +48,21 @@ public class IndexController {
         //总页数
         map.put("totalPages", page.getTotalPages());
         //内容
-        for (Blog b : page.getContent()) {
-            b.setContent(b.getContent().substring(0,100));
+        List<Blog> contents = page.getContent();
+        List<Blog> newContents = new ArrayList<>();
+        for (int i = contents.size() - 1; i >= 0; i--) {
+            if (contents.get(i).getDr() == null) {
+                newContents.add(contents.get(i));
+            }
         }
-        map.put("blogList", page.getContent());
+//        map.put("content", newContents);
+//        for (Blog b : newContents) {
+//            if (b.getContent().length() >= 100) {
+//                b.setContent(b.getContent().substring(0, 100));
+//            }
+//        }
+
+        map.put("blogList", newContents);
         //当前页
         map.put("pageNum", pageNum);
         //是否第一页

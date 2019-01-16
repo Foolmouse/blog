@@ -27,6 +27,16 @@ public class IndexController {
         return "redirect:/blog/findPage";
     }
 
+    @RequestMapping("/addBlogCategory")
+    public String toAddBlogCategory() {
+        return "redirect:/category/create";
+    }
+
+    @RequestMapping("/blogCategoryList")
+    public String toBlogCategoryList() {
+        return "redirect:/category/findPage";
+    }
+
     @RequestMapping("/stats")
     public String toStats() {
         return "stats";

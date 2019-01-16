@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -30,7 +29,6 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Blog create(Blog blog) {
-        //处理截取图片展示图路径
         if (!StringUtils.isEmpty(blog.getCover())) {
             blog.setCover(handleCoverPath(blog.getCover()));
         }
@@ -39,6 +37,9 @@ public class BlogServiceImpl implements BlogService {
         return blogRepository.save(blog);
     }
 
+    /**
+     * 处理截取图片展示图路径
+     */
     private String handleCoverPath(String cover) {
         String pattern = AttachmentServiceImpl.VIRTUAL_PATH + "(.*?)(\\.(.{3}))";
         Pattern compile = Pattern.compile(pattern);
@@ -63,6 +64,9 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Blog update(Blog blog) {
+        if (!StringUtils.isEmpty(blog.getCover())) {
+            blog.setCover(handleCoverPath(blog.getCover()));
+        }
         if (blog.getId() == null) {
             System.err.println("Exception: id is null;");
             return null;
