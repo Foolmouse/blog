@@ -170,9 +170,10 @@
 
         <div class="app-content">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a th:href="@{/#}">博客</a></li>
-                <li class="breadcrumb-item active" aria-current="page">编辑博客</li>
+                <li class="breadcrumb-item"><a th:href="@{/#}">博客分类</a></li>
+                <li class="breadcrumb-item active" aria-current="page">添加分类</li>
             </ol>
+
 
             <div class="row">
                 <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
@@ -181,47 +182,27 @@
                             <h4>新建博客文章</h4>
                         </div>
                         <div class="card-body">
-                            <form class="form-horizontal" th:action="@{/blog/{action}(action=${action})}" method="post">
+                            <form class="form-horizontal" th:action="@{/category/{action}(action=${action})}"
+                                  method="post">
                                 <div>
-                                    <input type="hidden" name="id" th:value="${blog.id}"/>
+                                    <input type="hidden" name="id" th:value="${category.id}"/>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-md-1 col-form-label">标题</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" id="book_name" name="name"
-                                               th:value="${blog.title}"
-                                               th:field="*{blog.title}"/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-1 col-form-label">作者</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" id="blog_writer" name="writer"
-                                               th:value="${blog.writer}" th:field="*{blog.writer}"/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-1 col-form-label">分类</label>
-                                    <div class="col-md-9">
-                                        <select class="form-control" th:field="*{blog.category}" id="sel"></select>
+                                        <input type="text" class="form-control" name="name"
+                                               th:value="${category.name}"
+                                               th:field="*{category.name}"/>
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <label class="col-md-1 col-form-label">封面图片</label>
+                                <div class="form-group row mb-0">
+                                    <label class="col-md-1 col-form-label">Number</label>
                                     <div class="col-md-9">
-                                        <textarea class="form-control" th:field="*{blog.cover}" rows="12"
-                                                  id="editor_cover">这是封面图片</textarea>
-                                    </div>
-
-                                </div>
-
-                                <div class="form-group row">
-                                    <label class="col-md-1 col-form-label">内容</label>
-                                    <div class="col-md-9">
-                                        <textarea class="form-control" th:field="*{blog.content}" rows="12"
-                                                  id="editor_content">Hiiiii.....</textarea>
+                                        <input class="form-control"
+                                               th:value="${category.num}"
+                                               th:field="*{category.num}" type="number" name="number">
                                     </div>
                                 </div>
 
@@ -234,11 +215,11 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
 
-            </iframe>
+            <div class="panelBar" th:replace="iframe::foot"></div>
+
 
         </div>
 
@@ -272,38 +253,11 @@
     <!--Scripts js-->
     <script th:src="@{/assets/js/scripts.js}"></script>
 
-    <!-- ckEditor -->
-    <script th:src="@{/ckeditor5-build-classic/ckeditor.js}"></script>
-
     <script>
         $(function () {
-            ClassicEditor.create(document.querySelector('#editor_cover'), {
-                // extraPlugins: [MyCustomUploadAdapterPlugin]
-                ckfinder: {
-                    uploadUrl: '/image/loadImage'
-                }
-            });
 
-            ClassicEditor.create(document.querySelector('#editor_content'), {
-                // extraPlugins: [MyCustomUploadAdapterPlugin]
-                ckfinder: {
-                    uploadUrl: '/image/loadImage'
-                }
-            }).then().catch();
-
-            var writer = $("#blog_writer").val();
-            if (writer == '') {
-                $("#blog_writer").val('罗炬');
-            }
-            $.getJSON("/json/category.json", function (data) {
-                $.each(data, function (index, item) {
-                    //使用纯js为select动态添加option
-                    document.getElementById("sel").options.add(new Option(data[index].name, data[index].index));
-                })
-            });
         });
     </script>
-
 
 </body>
 </html>

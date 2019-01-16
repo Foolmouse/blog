@@ -5,27 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>后台管理</title>
-
-    <!--Favicon -->R
-    <link rel="icon" th:href="@{/favicon.ico}" type="image/x-icon"/>
+    <!--Favicon -->
+    <link rel="icon" th:href="@{/assets/img/favicon.ico}" type="image/x-icon"/>
 
     <!--Bootstrap.min css-->
     <link rel="stylesheet" th:href="@{/assets/plugins/bootstrap/css/bootstrap.min.css}">
 
     <!--Icons css-->
-    <link rel="stylesheet" th:href="@{/assets/css/icons.css}">
+    <link rel="stylesheet" th:href="@{../assets/css/icons.css}">
 
     <!--Style css-->
-    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+    <link rel="stylesheet" th:href="@{../assets/css/style.css}">
 
     <!--mCustomScrollbar css-->
-    <link rel="stylesheet" th:href="@{/assets/plugins/scroll-bar/jquery.mCustomScrollbar.css}">
+    <link rel="stylesheet" th:href="@{../assets/plugins/scroll-bar/jquery.mCustomScrollbar.css}">
 
     <!--Sidemenu css-->
-    <link rel="stylesheet" th:href="@{/assets/plugins/toggle-menu/sidemenu.css}">
+    <link rel="stylesheet" th:href="@{../assets/plugins/toggle-menu/sidemenu.css}">
 
-    <!--Morris css-->
-    <link rel="stylesheet" th:href="@{/assets/plugins/morris/morris.css}">
 
 </head>
 
@@ -64,7 +61,7 @@
                         </div>
                         <div class="dropdown-list-content">
                             <a href="#" class="dropdown-item dropdown-item-unread">
-                                <img alt="image" th:src="@{/assets/img/avatar/avatar-1.jpg}"
+                                <img alt="image" th:src="@{assets/img/avatar/avatar-1.jpg}"
                                      class="rounded-circle dropdown-item-img">
                                 <div class="dropdown-item-desc">
                                     <div class="dropdownmsg d-flex">
@@ -168,142 +165,153 @@
             </ul>
         </aside>
 
+
         <div class="app-content">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a th:href="@{/#}">博客</a></li>
-                <li class="breadcrumb-item active" aria-current="page">编辑博客</li>
-            </ol>
+            <section class="section">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">博客</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">博客列表</li>
+                </ol>
 
-            <div class="row">
-                <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>新建博客文章</h4>
-                        </div>
-                        <div class="card-body">
-                            <form class="form-horizontal" th:action="@{/blog/{action}(action=${action})}" method="post">
-                                <div>
-                                    <input type="hidden" name="id" th:value="${blog.id}"/>
-                                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>博客列表</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="example"
+                                           class="table table-striped table-bordered border-t0 text-nowrap w-100">
+                                        <thead>
+                                        <tr>
+                                            <th>博客ID</th>
+                                            <th>标题</th>
+                                            <th>作者</th>
+                                            <th>管理</th>
+                                        </tr>
+                                        </thead>
 
-                                <div class="form-group row">
-                                    <label class="col-md-1 col-form-label">标题</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" id="book_name" name="name"
-                                               th:value="${blog.title}"
-                                               th:field="*{blog.title}"/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-1 col-form-label">作者</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" id="blog_writer" name="writer"
-                                               th:value="${blog.writer}" th:field="*{blog.writer}"/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-1 col-form-label">分类</label>
-                                    <div class="col-md-9">
-                                        <select class="form-control" th:field="*{blog.category}" id="sel"></select>
-                                    </div>
-                                </div>
+                                        <tbody>
+                                        <tr th:each="blog : ${content}">
+                                            <th scope="row" th:text="${blog.id}"></th>
+                                            <td><a th:href="@{/blog/update/{blogId}(blogId=${blog.id})}"
+                                                   th:text="${blog.title}"></a></td>
+                                            <td th:text="${blog.writer}"></td>
+                                            <td>
+                                                <a class="btn btn-danger"
+                                                   th:href="@{/blog/update/{blogId}(blogId=${blog.id})}">编辑</a>
+                                                <a class="btn btn-danger" th:onclick="'deleteBlog('+${blog.id}+');'">
+                                                    <!--th:href="@{/blog/delete/{blogId}(blogId=${blog.id})}"--> 删除</a>
+                                            </td>
+                                        </tr>
 
-                                <div class="form-group row">
-                                    <label class="col-md-1 col-form-label">封面图片</label>
-                                    <div class="col-md-9">
-                                        <textarea class="form-control" th:field="*{blog.cover}" rows="12"
-                                                  id="editor_cover">这是封面图片</textarea>
-                                    </div>
+
+                                        </tbody>
+                                    </table>
+
+                                    <nav aria-label="...">
+                                        <ul class="pagination">
+                                            <!-- 跳转第一页 -->
+                                            <li class="page-item">
+                                                <a class="page-link" th:if="${isFirstPage}" href="javascript:void(0);">&laquo;</a>
+                                                <a class="page-link" th:if="${not isFirstPage}"
+                                                   th:href="@{/blog/findPage(pageNum=1,pageSize=${pageSize})}">&laquo;</a>
+                                            </li>
+
+                                            <!-- 跳转上一页 -->
+                                            <li class="page-item">
+                                                <a class="page-link" th:if="${not isFirstPage}"
+                                                   th:href="@{/blog/findPage(pageNum=${pageNum-1},pageSize=${pageSize})}">Previous</a>
+                                                <a class="page-link" th:if="${isFirstPage}" href="javascript:void(0);">Previous</a>
+                                            </li>
+
+                                            <!-- 遍历中间页面 -->
+                                            <li class="page-item"
+                                                th:each="pageNo : ${#numbers.sequence(1, totalPages)}">
+                                                <a class="page-link" th:if="${pageNum eq pageNo}"
+                                                   href="javascript:void(0);">
+                                                    <b><span th:text="${pageNo}"></span></b>
+                                                </a>
+
+                                                <a class="page-link" th:if="${not (pageNum eq pageNo)}"
+                                                   th:href="@{/blog/findPage(pageNum=${pageNo},pageSize=${pageSize})}">
+                                                    <span th:text="${pageNo}"></span>
+                                                </a>
+                                            </li>
+
+                                            <!-- 跳转下一页 -->
+                                            <li class="page-item">
+                                                <a class="page-link" th:if="${not isLastPage}"
+                                                   th:href="@{/blog/findPage(pageNum=${pageNum+1},pageSize=${pageSize})}">Next</a>
+                                                <a class="page-link" th:if="${isLastPage}" href="javascript:void(0);">Next</a>
+                                            </li>
+
+                                            <!-- 跳转最后一页 -->
+                                            <li class="page-item">
+                                                <a class="page-link" th:if="${isLastPage}" href="javascript:void(0);">&raquo;</a>
+                                                <a class="page-link" th:if="${not isLastPage}"
+                                                   th:href="@{/blog/findPage(pageNum=${totalPages},pageSize=${pageSize})}">&raquo;</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+
 
                                 </div>
-
-                                <div class="form-group row">
-                                    <label class="col-md-1 col-form-label">内容</label>
-                                    <div class="col-md-9">
-                                        <textarea class="form-control" th:field="*{blog.content}" rows="12"
-                                                  id="editor_content">Hiiiii.....</textarea>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row mb-0">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <input class="btn btn-primary" type="submit" value="提交"/>&nbsp;&nbsp;
-                                    </div>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-            </div>
-
-
-            </iframe>
-
+            </section>
         </div>
 
+        <footer class="main-footer">
+            <div class="text-center">
+                Copyright &copy;Kharna-Admin 2018. Design By<a href="https://spruko.com/"> Spruko</a>
+            </div>
+        </footer>
 
     </div>
+</div>
 
-    <!--Jquery.min js-->
-    <script th:src="@{/assets/js/jquery.min.js}"></script>
+<!--Jquery.min js-->
+<script th:src="@{../assets/js/jquery.min.js}"></script>
 
-    <!--popper js-->
-    <script th:src="@{/assets/js/popper.js}"></script>
+<!--popper js-->
+<script th:src="@{../assets/js/popper.js}"></script>
 
-    <!--Tooltip js-->
-    <script th:src="@{/assets/js/tooltip.js}"></script>
+<!--Tooltip js-->
+<script th:src="@{../assets/js/tooltip.js}"></script>
 
-    <!--Bootstrap.min js-->
-    <script th:src="@{/assets/plugins/bootstrap/js/bootstrap.min.js}"></script>
+<!--Bootstrap.min js-->
+<script th:src="@{../assets/plugins/bootstrap/js/bootstrap.min.js}"></script>
 
-    <!--Jquery.nicescroll.min js-->
-    <script th:src="@{/assets/plugins/nicescroll/jquery.nicescroll.min.js}"></script>
+<!--Jquery.nicescroll.min js-->
+<script th:src="@{../assets/plugins/nicescroll/jquery.nicescroll.min.js}"></script>
 
-    <!--Scroll-up-bar.min js-->
-    <script th:src="@{/assets/plugins/scroll-up-bar/dist/scroll-up-bar.min.js}"></script>
+<!--Scroll-up-bar.min js-->
+<script th:src="@{../assets/plugins/scroll-up-bar/dist/scroll-up-bar.min.js}"></script>
 
-    <!--Sidemenu js-->
-    <script th:src="@{/assets/plugins/toggle-menu/sidemenu.js}"></script>
+<!--Sidemenu js-->
+<script th:src="@{../assets/plugins/toggle-menu/sidemenu.js}"></script>
 
-    <!--mCustomScrollbar js-->
-    <script th:src="@{/assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js}"></script>
+<!--mCustomScrollbar js-->
+<script th:src="@{../assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js}"></script>
 
-    <!--Scripts js-->
-    <script th:src="@{/assets/js/scripts.js}"></script>
 
-    <!-- ckEditor -->
-    <script th:src="@{/ckeditor5-build-classic/ckeditor.js}"></script>
+<!--Scripts js-->
+<script th:src="@{../assets/js/scripts.js}"></script>
 
-    <script>
-        $(function () {
-            ClassicEditor.create(document.querySelector('#editor_cover'), {
-                // extraPlugins: [MyCustomUploadAdapterPlugin]
-                ckfinder: {
-                    uploadUrl: '/image/loadImage'
-                }
-            });
-
-            ClassicEditor.create(document.querySelector('#editor_content'), {
-                // extraPlugins: [MyCustomUploadAdapterPlugin]
-                ckfinder: {
-                    uploadUrl: '/image/loadImage'
-                }
-            }).then().catch();
-
-            var writer = $("#blog_writer").val();
-            if (writer == '') {
-                $("#blog_writer").val('罗炬');
-            }
-            $.getJSON("/json/category.json", function (data) {
-                $.each(data, function (index, item) {
-                    //使用纯js为select动态添加option
-                    document.getElementById("sel").options.add(new Option(data[index].name, data[index].index));
-                })
-            });
-        });
-    </script>
-
+<script>
+    function deleteBlog(blogId) {
+        if (window.confirm('你确定要删除该条博文吗？')) {
+            location.href = "/blog/delete/" + blogId;
+        } else {
+            return;
+        }
+    }
+</script>
 
 </body>
 </html>

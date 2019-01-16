@@ -8,9 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.spi.CalendarDataProvider;
 
 /**
  * desc: save images
@@ -34,8 +36,12 @@ public class AttachmentServiceImpl implements AttachmentService {
         String originalName = file.getOriginalFilename();
         // generate file name
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMhh");
+        //String localFileName = format.format(new Date()) + "-" + System.currentTimeMillis() + "-" + originalName;
 
-        String localFileName = format.format(new Date()) + "-" + System.currentTimeMillis() + "-" + originalName;
+        Calendar instance = Calendar.getInstance();
+        String currentData =""+ instance.get(Calendar.YEAR) + instance.get(Calendar.MONDAY)+ instance.get(Calendar.DAY_OF_MONTH);
+        String localFileName = currentData + "-" + System.currentTimeMillis() + "-" + originalName;
+
         // get project path
         // 这里不适用项目路径,使用配置的虚拟路径
         String projectRealPath = request.getSession().getServletContext().getRealPath("");

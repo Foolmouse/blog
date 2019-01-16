@@ -44,95 +44,8 @@
 		<div id="app">
 			<div class="main-wrapper" >
 
-				<!-- 上方导航栏 -->
-				<nav class="navbar navbar-expand-lg main-navbar">
-					<a class="header-brand" th:href="@{index.html}">
-						<img th:src="@{/assets/img/brand/logo.png}" class="header-brand-img" alt="Manager  logo">
-					</a>
-					<form class="form-inline mr-auto">
-						<ul class="navbar-nav mr-3">
-							<li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i
-									class="ion ion-navicon-round"></i></a></li>
-							<li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-md-none navsearch"><i
-									class="ion ion-search"></i></a></li>
-						</ul>
-						<div class="search-element">
-							<input class="form-control" type="search" placeholder="Search" aria-label="Search">
-							<button class="btn btn-primary" type="submit"><i class="ion ion-search"></i></button>
-						</div>
-					</form>
-					<ul class="navbar-nav navbar-right">
-						<li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
-																	 class="nav-link notification-toggle nav-link-lg beep"><i
-								class="ion-ios-email-outline"></i></a>
-							<div class="dropdown-menu dropdown-list dropdown-menu-right">
-								<div class="dropdown-header">Messages
-									<div class="float-right">
-										<a href="#">View All</a>
-									</div>
-								</div>
-								<div class="dropdown-list-content">
-									<a href="#" class="dropdown-item dropdown-item-unread">
-										<img alt="image" th:src="@{assets/img/avatar/avatar-1.jpg}"
-											 class="rounded-circle dropdown-item-img">
-										<div class="dropdown-item-desc">
-											<div class="dropdownmsg d-flex">
-												<div class="">
-													<b>Stewart Ball</b>
-													<p>Your template awesome</p>
-												</div>
-												<div class="time">6 hours ago</div>
-											</div>
-										</div>
-									</a>
-								</div>
-							</div>
-						</li>
-						<li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
-																	 class="nav-link  nav-link-lg beep"><i
-								class="ion-ios-bell-outline"></i></a>
-							<div class="dropdown-menu dropdown-list dropdown-menu-right">
-								<div class="dropdown-header">Notifications
-									<div class="float-right">
-										<a href="#">View All</a>
-									</div>
-								</div>
-								<div class="dropdown-list-content">
-									<a href="#" class="dropdown-item">
-										<i class="fa fa-users text-primary"></i>
-										<div class="dropdown-item-desc">
-											<b>So many Users Visit your template</b>
-										</div>
-									</a>
-								</div>
-							</div>
-						</li>
-						<li class="dropdown dropdown-list-toggle">
-							<a href="#" class="nav-link nav-link-lg full-screen-link">
-								<i class="ion-arrow-expand" id="fullscreen-button"></i>
-							</a>
-						</li>
-						<li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg">
-							<img th:src="@{/assets/img/avatar/avatar-1.jpg}" alt="profile-user" class="rounded-circle w-32">
-							<div class="d-sm-none d-lg-inline-block">Dunk Luo</div>
-						</a>
-							<div class="dropdown-menu dropdown-menu-right">
-								<a href="profile.html" class="dropdown-item has-icon">
-									<i class="ion ion-android-person"></i> Profile
-								</a>
-								<a href="profile.html" class="dropdown-item has-icon">
-									<i class="ion-android-drafts"></i> Messages
-								</a>
-								<a href="profile.html" class="dropdown-item has-icon">
-									<i class="ion ion-gear-a"></i> Settings
-								</a>
-								<a href="/logout" class="dropdown-item has-icon">
-									<i class="ion-ios-redo"></i> Logout
-								</a>
-							</div>
-						</li>
-					</ul>
-				</nav>
+				top-navigator
+				<div class="panelBar" th:replace="iframe::top-navigator"></div>
 
 				<!-- 左侧导航栏 -->
 				<aside class="app-sidebar">
@@ -172,6 +85,15 @@
 							<ul class="slide-menu">
 								<li><a href="/index/addBlog" class="slide-item">添加博客</a></li>
 								<li><a href="/index/blogList" class="slide-item">博客管理</a></li>
+							</ul>
+						</li>
+						<li class="slide">
+							<a class="side-menu__item" data-toggle="slide" href="#"><i
+									class="side-menu__icon fa fa-file-text"></i><span class="side-menu__label">博客分类</span><i
+									class="angle fa fa-angle-right"></i></a>
+							<ul class="slide-menu">
+								<li><a href="/index/addBlogCategory" class="slide-item">添加分类</a></li>
+								<li><a href="/index/blogCategoryListList" class="slide-item">分类管理</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -369,11 +291,7 @@
 					</section>
 				</div>
 
-				<footer class="main-footer">
-					<div class="text-center">
-						Copyright &copy;Kharna-Admin 2019. Design By更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a>
-					</div>
-				</footer>
+				<div class="panelBar" th:replace="iframe::foot"></div>
 
 			</div>
 		</div>

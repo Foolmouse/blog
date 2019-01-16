@@ -60,14 +60,11 @@
         <div class="row">
             <div class="col-md-9">
 
-                <div class="blog-main" th:each="blog : ${blogList}">
+                <!--<div class="blog-main" th:each="blog : ${blogList}">
                     <div class="heading-blog">
                         <a th:text="${blog.title}" th:href="@{/index/{blogId}(blogId=${blog.id})}"></a>
                     </div>
-                    <!-- 这个位置是文章图片展示 -->
-                    <!--  <a href="../views/singlepost.html">
-                    <img src="../assets/img/1.jpg" class="img-responsive img-rounded" />
-                         </a>-->
+
                     <div class="blog-info">
                         <span class="label label-primary"
                               th:text="${#dates.format(blog.createdDatetime,'yyyy-MM-dd hh:mm:ss')}">2019.1.1</span>
@@ -89,8 +86,36 @@
                              style="width: auto;height: auto;max-height: 200px;padding-right: 10px">
                         </span>
 
-                        <span class="blog-txt" th:text="${blog.content}">
+                        <span class="blog-txt" th:text="${blog.content}"/>
 
+                    </div>
+                </div>-->
+
+                <div class="blog-main" th:each="blog : ${blogList}">
+                    <div class="heading-blog">
+                        <a th:text="${blog.title}" th:href="@{/index/{blogId}(blogId=${blog.id})}"></a>
+                    </div>
+                    <!-- 这个位置是文章图片展示 -->
+                    <a th:href="@{/index/{blogId}(blogId=${blog.id})}">
+                        <img th:src="${blog.cover}" src="../assets/img/1.jpg" style="max-height: 200px;max-width: 300px;" class="img-responsive img-rounded" />
+                    </a>
+                    <div class="blog-info">
+                        <span class="label label-primary"
+                              th:text="${#dates.format(blog.createdDatetime,'yyyy-MM-dd hh:mm:ss')}">Posted on 26th November 2014</span>
+
+                        <span th:switch="${blog.category}">
+                            <span th:case="1" class="label label-success" >生活类</span>
+                            <span th:case="2" class="label label-success" >技术类</span>
+                            <span th:case="3" class="label label-success" >闲谈</span>
+                        </span>
+                        <span class="label label-danger" th:text="${blog.writer}">By Jhon</span>
+                        <span class="label label-info">
+                                <i class="fa fa-thumbs-up"></i>+0
+                        <i class="fa fa-thumbs-down"></i>- 0
+                            </span>
+                    </div>
+                    <div class="blog-txt" th:utext="${blog.content(str,100)}">
+                        博文没有内容...
                     </div>
                 </div>
 
