@@ -21,7 +21,7 @@ public class Category extends BaseModel {
     /**
      * mapping on DB of column
      */
-    private int num;
+    private Integer num;
 
     public String getName() {
         return name;
@@ -31,11 +31,11 @@ public class Category extends BaseModel {
         this.name = name;
     }
 
-    public int getNum() {
+    public Integer getNum() {
         return num;
     }
 
-    public void setNum(int num) {
+    public void setNum(Integer num) {
         this.num = num;
     }
 }

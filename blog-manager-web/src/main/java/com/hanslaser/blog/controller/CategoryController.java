@@ -43,8 +43,8 @@ public class CategoryController {
      * 创建 Category
      */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String postCategory(@ModelAttribute Category Category) {
-        categoryService.add(Category);
+    public String postCategory(@ModelAttribute Category category) {
+        categoryService.add(category);
         return REDIRECT_INDEX;
     }
 
@@ -52,8 +52,8 @@ public class CategoryController {
      * 更新 Category
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String putCategory(@ModelAttribute Category Category) {
-        categoryService.update(Category);
+    public String putCategory(@ModelAttribute Category category) {
+        categoryService.update(category);
         return BLOG_CATEGORY_LIST;
     }
 
@@ -71,7 +71,7 @@ public class CategoryController {
      */
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String getCategory(@PathVariable Long id, ModelMap map) {
-        map.put("Category", categoryService.get(id));
+        map.put("category", categoryService.get(id));
         map.put("action", "update");
         return BLOG_CATEGORY_FORM;
     }
@@ -89,14 +89,7 @@ public class CategoryController {
         //总页数
         map.put("totalPages", page.getTotalPages());
         //内容
-        List<Category> content = page.getContent();
-        List<Object> newContent = new ArrayList<>();
-        for (int i = content.size() - 1; i >= 0; i--) {
-            if (content.get(i).getDr() == null) {
-                newContent.add(content.get(i));
-            }
-        }
-        map.put("content", newContent);
+        map.put("content",  page.getContent());
         //当前页
         map.put("pageNum", pageNum);
 

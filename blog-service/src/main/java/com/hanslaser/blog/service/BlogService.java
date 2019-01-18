@@ -2,6 +2,7 @@ package com.hanslaser.blog.service;
 
 import com.hanslaser.blog.entity.Blog;
 import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -32,4 +33,6 @@ public interface BlogService {
     void delete(Long id);
 
     Blog findById(Long id);
+
+    List<Blog> findByCategoryNum(int categoryNum);
 }

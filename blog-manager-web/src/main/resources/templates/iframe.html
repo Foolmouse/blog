@@ -101,6 +101,60 @@
     </nav>
 </div>
 
+<div class="panelBar" th:fragment="left-navigator">
+    <!-- 左侧导航栏 -->
+    <aside class="app-sidebar">
+        <div class="app-sidebar__user">
+            <div class="dropdown">
+                <a class="nav-link pl-2 pr-2 leading-none d-flex" data-toggle="dropdown" href="#">
+                    <img alt="image" th:src="@{/assets/img/avatar/avatar-1.jpg}" class=" avatar-md rounded-circle">
+                    <span class="ml-2 d-lg-block">
+									<span class="text-white app-sidebar__user-name mt-5">Dunk Luo</span><br>
+									<span class="text-muted app-sidebar__user-name text-sm">web developer</span>
+								</span>
+                </a>
+            </div>
+        </div>
+        <ul class="side-menu">
+            <li class="slide">
+                <a class="side-menu__item" data-toggle="slide" href="#"><i
+                        class="side-menu__icon fa fa-desktop"></i><span class="side-menu__label">操作板</span><i
+                        class="angle fa fa-angle-right"></i></a>
+                <ul class="slide-menu">
+                    <li><a class="slide-item" href="/index"><span>首页</span></a></li>
+                </ul>
+            </li>
+            <li class="slide">
+                <a class="side-menu__item" data-toggle="slide" href="#"><i
+                        class="side-menu__icon fa fa-table"></i><span class="side-menu__label">日志</span><i
+                        class="angle fa fa-angle-right"></i></a>
+                <ul class="slide-menu">
+                    <li><a href="/index/portalLog" class="slide-item">门户访问日志</a></li>
+                    <li><a href="/index/loginLog" class="slide-item">后台操作日志</a></li>
+                </ul>
+            </li>
+            <li class="slide">
+                <a class="side-menu__item" data-toggle="slide" href="#"><i
+                        class="side-menu__icon fa fa-file-text"></i><span class="side-menu__label">博客</span><i
+                        class="angle fa fa-angle-right"></i></a>
+                <ul class="slide-menu">
+                    <li><a href="/index/addBlog" class="slide-item">添加博客</a></li>
+                    <li><a href="/index/blogList" class="slide-item">博客管理</a></li>
+                </ul>
+            </li>
+            <li class="slide">
+                <a class="side-menu__item" data-toggle="slide" href="#"><i
+                        class="side-menu__icon fa fa-file-text"></i><span class="side-menu__label">博客分类</span><i
+                        class="angle fa fa-angle-right"></i></a>
+                <ul class="slide-menu">
+                    <li><a href="/category/create" class="slide-item">添加分类</a></li>
+                    <li><a href="/category/findPage" class="slide-item">分类管理</a></li>
+                </ul>
+            </li>
+        </ul>
+    </aside>
+</div>
+
 
 
 

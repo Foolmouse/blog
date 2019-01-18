@@ -2,6 +2,7 @@ package com.hanslaser.blog.service;
 
 import org.springframework.data.domain.Page;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,6 +22,8 @@ public interface BaseService<T> {
     void update(T t);
 
     T get(Long id);
+
+    List<T> getAll();
 
     Page<T> findByPage(int currentPageNumber, int numberPerPage, T t1, T t2);
 

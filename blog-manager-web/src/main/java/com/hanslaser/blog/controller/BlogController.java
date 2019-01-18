@@ -2,6 +2,7 @@ package com.hanslaser.blog.controller;
 
 import com.hanslaser.blog.service.BlogService;
 import com.hanslaser.blog.entity.Blog;
+import com.hanslaser.blog.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,8 @@ public class BlogController {
 
     @Autowired
     private BlogService blogService;
+    @Autowired
+    private CategoryService categoryService;
 
     /**
      * 获取创建 Blog 表单 , 放入一个无数据对象
@@ -36,6 +39,7 @@ public class BlogController {
     public String createBlogForm(ModelMap map) {
         map.addAttribute("blog", new Blog());
         map.addAttribute("action", "create");
+        map.addAttribute("categoryList", categoryService.getAll());
         return BLOG_FORM;
     }
 
@@ -45,7 +49,7 @@ public class BlogController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String postBlog(@ModelAttribute Blog blog) {
         blogService.create(blog);
-        return REDIRECT_INDEX;
+        return REDIRECT_BLOG_LIST;
     }
 
     /**
@@ -73,6 +77,7 @@ public class BlogController {
     public String getBlog(@PathVariable Long id, ModelMap map) {
         map.put("blog", blogService.findById(id));
         map.put("action", "update");
+        map.addAttribute("categoryList", categoryService.getAll());
         return BLOG_FORM;
     }
 
@@ -89,14 +94,7 @@ public class BlogController {
         //总页数
         map.put("totalPages", page.getTotalPages());
         //内容
-        List<Blog> content = page.getContent();
-        List<Object> newContent = new ArrayList<>();
-        for (int i = content.size() - 1; i >= 0; i--) {
-            if (content.get(i).getDr() == null) {
-                newContent.add(content.get(i));
-            }
-        }
-        map.put("content", newContent);
+        map.put("content", page.getContent());
         //当前页
         map.put("pageNum", pageNum);
 
