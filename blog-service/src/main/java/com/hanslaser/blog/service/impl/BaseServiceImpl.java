@@ -79,7 +79,10 @@ public abstract class BaseServiceImpl<T extends BaseModel> implements BaseServic
     @Override
     public void update(T t) {
         setBaseDAO();
+        Optional oldData = baseDAO.findById(t.getId());
+        t.setCreatedDatetime(((T) oldData.get()).getCreatedDatetime());
         t.setLastModifiedDatetime(new Timestamp(System.currentTimeMillis()));
+        t.setDr(0);
         baseDAO.save(t);
     }
 

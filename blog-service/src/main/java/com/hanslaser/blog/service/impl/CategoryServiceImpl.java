@@ -53,7 +53,10 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category> implements Ca
 
     @Override
     public void delete(Long id) {
-        blogService.findByCategoryNum(get(id).getNum());
+        List<Blog> byCategoryId = blogService.findByCategoryId(id);
+        if (null != byCategoryId && byCategoryId.size() != 0) {
+            return;
+        }
         super.delete(id);
     }
 
@@ -61,9 +64,9 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category> implements Ca
     public List<Category> getAll() {
         List<Category> categoryList = super.getAll();
         for (Category category : categoryList) {
-            List<Blog> byCategoryNum = blogService.findByCategoryNum(category.getNum());
-            if (!CollectionUtils.isEmpty(byCategoryNum)) {
-                category.setTotalNum(byCategoryNum.size());
+            List<Blog> byCategoryId = blogService.findByCategoryId(category.getId());
+            if (!CollectionUtils.isEmpty(byCategoryId)) {
+                category.setTotalNum(byCategoryId.size());
             }
         }
         return categoryList;

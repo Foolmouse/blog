@@ -6,17 +6,12 @@ import com.hanslaser.blog.service.BlogService;
 import com.hanslaser.blog.util.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
-import org.thymeleaf.expression.Lists;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -41,8 +36,6 @@ public class BlogServiceImpl implements BlogService {
         blog.setDr(0);
         return blogRepository.save(blog);
     }
-
-
 
     @Override
     public List<Blog> findAll() {
@@ -77,7 +70,10 @@ public class BlogServiceImpl implements BlogService {
             System.err.println("Exception: id is null;");
             return null;
         }
+        Optional<Blog> oldBlog = blogRepository.findById(blog.getId());
+        blog.setCreatedDatetime(oldBlog.get().getCreatedDatetime());
         blog.setLastModifiedDatetime(DateUtils.getTimestamp());
+        blog.setDr(0);
         return blogRepository.save(blog);
     }
 
@@ -94,8 +90,8 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<Blog> findByCategoryNum(int categoryNum) {
-        return blogRepository.findByCategory(categoryNum);
+    public List<Blog> findByCategoryId(Long categoryId) {
+        return blogRepository.findByCategory(categoryId);
     }
 
     /**

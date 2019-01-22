@@ -22,17 +22,33 @@ public class Blog extends BaseModel {
     @Column
     private String content;
 
+    /**
+     * 内容摘要
+     */
+    @Column
+    private String abstractContent;
+
     @Column
     private String writer;
 
     @Column
-    private Integer category;
+    private Long categoryId;
 
     /**
      * 封面图片路径
      */
     @Column
     private String cover;
+
+
+
+    public String getAbstractContent() {
+        return abstractContent;
+    }
+
+    public void setAbstractContent(String abstractContent) {
+        this.abstractContent = abstractContent;
+    }
 
     public String getCover() {
         return cover;
@@ -66,11 +82,11 @@ public class Blog extends BaseModel {
         this.content = content;
     }
 
-    public Integer getCategory() {
-        return category;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory(Integer category) {
-        this.category = category;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 }

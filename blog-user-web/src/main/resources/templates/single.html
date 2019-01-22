@@ -12,9 +12,8 @@
     <!-- Basic Page Needs
   ================================================== -->
     <meta charset="utf-8">
-    <title>Artistry - Free Responsive Html5 Templates</title>
-    <meta name="description" content="Free Responsive Html5 Css3 Templates ">
-    <meta name="author" content="">
+    <title th:text="${blog.title}">blog information</title>
+
 
     <!-- Mobile Specific Metas
   ================================================== -->
@@ -22,11 +21,11 @@
 
     <!-- CSS
   ================================================== -->
-    <link rel="stylesheet" th:href="@{../css/zerogrid.css}">
-    <link rel="stylesheet" th:href="@{../css/style.css}">
-    <link rel="stylesheet" th:href="@{../css/menu.css}">
-    <link rel="stylesheet" th:href="@{../css/responsiveslides.css}">
-    <link th:href="@{../font-awesome/css/font-awesome.min.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/zerogrid.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+    <link rel="stylesheet" th:href="@{/css/responsiveslides.css}">
+    <link th:href="@{/font-awesome/css/font-awesome.min.css}" rel="stylesheet" type="text/css">
     <script th:src="@{/js/jquery183.min.js}"></script>
     <script th:src="@{/js/responsiveslides.min.js}"></script>
     <script>
@@ -118,7 +117,7 @@
                 <div class="row">
                     <div class="col-full t-center">
                         <div class="wrap-col">
-                            <div class="logo"><a href="#"><img th:src="@{mages/logo.png}"/></a></div>
+                            <div class="logo"><a href="#"><img th:src="@{/images/logo.png}"/></a></div>
                             <div class="tagline">Temporibus autem quibusdam et aut officiis</div>
                         </div>
                     </div>
@@ -136,27 +135,26 @@
         <div class="zerogrid">
             <div class="wrap-container clearfix">
                 <div class="row">
+                    <!-- blog content -->
                     <div id="main-content" class="col-2-3">
                         <div class="wrap-content">
                             <article>
                                 <div class="art-header">
                                     <div class="entry-title">
-                                        <a href="#" th:text="${blog.title}">Post Format: Gallery</a>
+                                        <a href="#" th:text="${blog.title}"></a>
                                     </div>
-                                    <span>Posted on November 12, 2015</span>
+                                    <span th:text="${#dates.format(blog.createdDatetime,'yyyy-MM-dd hh:mm:ss')}"></span>
                                 </div>
-                                <img th:src="@{ages/1.jpg}" alt="图挂了"/>
+                                <img th:src="${blog.cover}" alt="..." src="/assets/img/1.jpg"/>
 
                                 <div class="art-content">
                                     <div class="excerpt" th:utext="${blog.content}"></div>
-
                                 </div>
-
-
 
                             </article>
                         </div>
                     </div>
+
                     <div id="sidebar" class="col-1-3">
                         <!---- Start Widget ---->
                         <div class="widget wid-about">
@@ -164,13 +162,12 @@
                                 <h5>ABOUT ME</h5>
                             </div>
                             <div class="wid-content">
-                                <img th:src="@{mages/10.jpg}"/>
-                                <p>My name is Activello and I am an awesome WordPress blog theme for photography, food,
-                                    travel and other blogs. I was created by colorlib.</p>
+                                <img th:src="@{/images/10.jpg}"/>
+                                <p>常常为了碎片化的知识无法累积而苦恼,于是就在业余时间做了个人博客网站,将一些获得累积下来,希望以后的自己会感谢曾经努力的自己.</p>
                             </div>
                         </div>
                         <!---- Start Widget ---->
-                        <div class="widget wid-follow">
+                        <!--<div class="widget wid-follow">
                             <div class="wid-header">
                                 <h5>FOLLOW ME</h5>
                             </div>
@@ -184,9 +181,9 @@
                                     <li><a href=""><i class="fa fa-github"></i></a></li>
                                 </ul>
                             </div>
-                        </div>
+                        </div>-->
                         <!---- Start Widget ---->
-                        <div class="widget wid-post">
+                        <!--<div class="widget wid-post">
                             <div class="wid-header">
                                 <h5>Latest Posts</h5>
                             </div>
@@ -194,7 +191,7 @@
                                 <div class="post">
                                     <div class="zoom-container">
                                         <a href="single.html">
-                                            <img th:src="@{mages/11.jpg}"/>
+                                            <img th:src="@{/images/11.jpg}"/>
                                         </a>
                                     </div>
                                     <div class="wrapper">
@@ -209,7 +206,7 @@
                                 <div class="post">
                                     <div class="zoom-container">
                                         <a href="single.html">
-                                            <img th:src="@{mages/12.jpg}"/>
+                                            <img th:src="@{/images/12.jpg}"/>
                                         </a>
                                     </div>
                                     <div class="wrapper">
@@ -239,7 +236,7 @@
                                 <div class="post">
                                     <div class="zoom-container">
                                         <a href="single.html">
-                                            <img th:src="@{mages/14.jpg}"/>
+                                            <img th:src="@{/images/14.jpg}"/>
                                         </a>
                                     </div>
                                     <div class="wrapper">
@@ -252,9 +249,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                         <!---- Start Widget ---->
-                        <div class="widget wid-category">
+                        <!--<div class="widget wid-category">
                             <div class="wid-header">
                                 <h5>CATEGORIES</h5>
                             </div>
@@ -267,9 +264,9 @@
                                     <li><a href="#">Cat B</a></li>
                                 </ul>
                             </div>
-                        </div>
+                        </div>-->
                         <!---- Start Widget ---->
-                        <div class="widget wid-subcribe">
+                        <!--<div class="widget wid-subcribe">
                             <div class="wid-header">
                                 <h5>SUBSCRIBE TO BLOG VIA EMAIL</h5>
                             </div>
@@ -282,9 +279,9 @@
                                 </form>
                                 <a class="button button03" href="#">SUBSCRIBE</a>
                             </div>
-                        </div>
+                        </div>-->
                         <!---- Start Widget ---->
-                        <div class="widget wid-follow">
+                        <!--<div class="widget wid-follow">
                             <div class="wid-header">
                                 <h5>FOLLOW ME ON INSTAGRAM</h5>
                             </div>
@@ -313,7 +310,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>
@@ -346,6 +343,7 @@
 
     <script type="text/javascript">
         $(function () {
+
             if ($.browser.msie && $.browser.version.substr(0, 1) < 7) {
                 $('li').has('ul').mouseover(function () {
                     $(this).children('ul').css('visibility', 'visible');
@@ -362,6 +360,7 @@
             // iPad
             var isiPad = navigator.userAgent.match(/iPad/i) != null;
             if (isiPad) $('#menu ul').addClass('no-transition');
+
         });
     </script>
 

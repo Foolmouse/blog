@@ -34,5 +34,10 @@ public interface BlogService {
 
     Blog findById(Long id);
 
-    List<Blog> findByCategoryNum(int categoryNum);
+    /**
+     * 根据分类id查询博客
+     * @param categoryId
+     * @return
+     */
+    List<Blog> findByCategoryId(Long categoryId);
 }

@@ -19,7 +19,7 @@ public interface BlogRepository extends JpaRepository<Blog, Long> {
      * @param categoryNum
      * @return
      */
-    @Query("select b from Blog b where b.dr=0 and b.category=?1")
-    List<Blog> findByCategory(int categoryNum);
+    @Query("select b from Blog b where b.dr=0 and b.categoryId=?1")
+    List<Blog> findByCategory(Long categoryId);
 
 }

@@ -45,7 +45,7 @@ public class CategoryController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String postCategory(@ModelAttribute Category category) {
         categoryService.add(category);
-        return REDIRECT_INDEX;
+        return REDIRECT_BLOG_CATEGORY_LIST;
     }
 
     /**
@@ -54,7 +54,7 @@ public class CategoryController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String putCategory(@ModelAttribute Category category) {
         categoryService.update(category);
-        return BLOG_CATEGORY_LIST;
+        return REDIRECT_BLOG_CATEGORY_LIST;
     }
 
     /**

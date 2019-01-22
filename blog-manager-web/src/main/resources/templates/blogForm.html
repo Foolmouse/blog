@@ -57,6 +57,7 @@
                             <form class="form-horizontal" th:action="@{/blog/{action}(action=${action})}" method="post">
                                 <div>
                                     <input type="hidden" name="id" th:value="${blog.id}"/>
+                                    <!--<input type="hidden" name="createdDatetime" th:value="${#dates.format(blog.createdDatetime,'yyyy-MM-dd hh:mm:ss')}"/>-->
                                 </div>
 
                                 <div class="form-group row">
@@ -74,25 +75,17 @@
                                                th:value="${blog.writer}" th:field="*{blog.writer}"/>
                                     </div>
                                 </div>
-                                <!--<div class="form-group row">
-                                    <label class="col-md-1 col-form-label">分类</label>
-                                    <div class="col-md-9">
-                                        <select class="form-control" th:field="*{blog.category}" id="sel"></select>
-                                    </div>
-                                </div>-->
 
                                 <div class="form-group row">
                                     <label class="col-md-1 col-form-label">分类</label>
                                     <div class="col-md-9">
                                         <!--<select class="form-control" th:field="*{blog.category}" id="sel"></select>-->
-                                        <select  class="form-control" th:field="*{blog.category}" >
+                                        <select  class="form-control" th:field="*{blog.categoryId}" >
                                             <option th:each="category:${categoryList}" th:text="${category.name}"
-                                                    th:value="${category.num}" ></option>
+                                                    th:value="${category.id}" ></option>
                                         </select>
                                     </div>
                                 </div>
-
-
 
 
                                 <div class="form-group row">
@@ -100,6 +93,13 @@
                                     <div class="col-md-9">
                                         <textarea class="form-control" th:field="*{blog.cover}" rows="12"
                                                   id="editor_cover">这是封面图片</textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-md-1 col-form-label">内容摘要</label>
+                                    <div class="col-md-9">
+                                        <textarea class="form-control" th:field="*{blog.abstractContent}" id="abstractContent"></textarea>
                                     </div>
                                 </div>
 

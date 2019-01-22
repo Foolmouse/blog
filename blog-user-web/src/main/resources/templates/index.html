@@ -28,18 +28,21 @@
             </div>
             <div class="col-md-5 text-center">
                 <h1><strong>Luo Ju </strong></h1>
-                <h4>Blogger & Designer</h4>
+                <h4>技术 & 分享</h4>
+                <h5><a href="http://dunkluo.top:8080" target="_blank"></a>后台登录</h5>
             </div>
             <div class="col-md-5">
                 <h3>WHO M I :</h3>
-                I am a 22 years old guy who loves bloggging and advanced technology .
+                I am a 22 years old guy who loves blogging and advanced technology .
                 I will provide all my works for free here with some good piece of information.
-                You can send email to me <i><strong>DunkLuo@163.com</strong></i>
+                You can send email to me <i><strong><a href="https://mail.163.com/" target="_blank">DunkLuo@163.com</a></strong></i> or
+                <i><strong><a href="https://github.com/Foolmouse" target="_blank">my GitHub</a></strong></i>
             </div>
         </div>
     </div>
 </section>
 <!--HOME SECTION END-->
+
 <section>
     <div class="container">
         <div class="row">
@@ -60,36 +63,7 @@
         <div class="row">
             <div class="col-md-9">
 
-                <!--<div class="blog-main" th:each="blog : ${blogList}">
-                    <div class="heading-blog">
-                        <a th:text="${blog.title}" th:href="@{/index/{blogId}(blogId=${blog.id})}"></a>
-                    </div>
 
-                    <div class="blog-info">
-                        <span class="label label-primary"
-                              th:text="${#dates.format(blog.createdDatetime,'yyyy-MM-dd hh:mm:ss')}">2019.1.1</span>
-
-                        <span th:switch="${blog.category}">
-                            <span th:case="1" class="label label-success">生活类</span>
-                            <span th:case="2" class="label label-success">技术类</span>
-                            <span th:case="3" class="label label-success">闲谈</span>
-                        </span>
-                        <span class="label label-danger" th:text="${blog.writer}">By LuoJu</span>
-                        <span class="label label-info">
-                                <i class="fa fa-thumbs-up"></i>+0
-                        <i class="fa fa-thumbs-down"></i>- 0
-                            </span>
-                    </div>
-                    <div style="height: 210px">
-                        <span style="float:left;width: 40%">
-                        <img th:src="${blog.cover}"
-                             style="width: auto;height: auto;max-height: 200px;padding-right: 10px">
-                        </span>
-
-                        <span class="blog-txt" th:text="${blog.content}"/>
-
-                    </div>
-                </div>-->
 
                 <div class="blog-main" th:each="blog : ${blogList}">
                     <div class="heading-blog">
@@ -97,17 +71,18 @@
                     </div>
                     <!-- 这个位置是文章图片展示 -->
                     <a th:href="@{/index/{blogId}(blogId=${blog.id})}">
-                        <img th:src="${blog.cover}" src="../assets/img/1.jpg" style="max-height: 200px;max-width: 300px;" class="img-responsive img-rounded" />
+                        <img th:src="${blog.cover}" src="../assets/img/1.jpg"
+                             style="max-height: 300px;max-width: 50%;" class="img-responsive img-rounded"/>
                     </a>
 
                     <div class="blog-info">
                         <span class="label label-primary"
                               th:text="${#dates.format(blog.createdDatetime,'yyyy-MM-dd hh:mm:ss')}">Posted on 26th November 2014</span>
 
-                        <span th:switch="${blog.category}">
-                            <span th:case="1" class="label label-success" >生活类</span>
-                            <span th:case="2" class="label label-success" >技术类</span>
-                            <span th:case="3" class="label label-success" >闲谈</span>
+                        <span th:switch="${blog.categoryId}">
+                            <span th:each="category : ${categoryList}">
+                                <span th:case="${category.id}" th:text="${category.name}" class="label label-success">XX类</span>
+                            </span>
                         </span>
                         <span class="label label-danger" th:text="${blog.writer}">By LuoJu</span>
                         <span class="label label-info">
@@ -116,7 +91,7 @@
                             </span>
                     </div>
 
-                    <div class="blog-txt" th:text="${#strings.abbreviate(blog.content,200)}">
+                    <div class="blog-txt" th:text="${#strings.abbreviate(blog.abstractContent,100)}">
                         博文没有内容...
                     </div>
 
@@ -176,22 +151,22 @@
 
                     <li class="list-group-item" th:each="category : ${categoryList}">
                         <span class="badge" th:utext="${category.totalNum}">0</span>
-                        <span  th:utext="${category.name}">---</span>
+                        <span th:utext="${category.name}">---</span>
                     </li>
 
 
-                 <!--   <li class="list-group-item">
-                        <span class="badge">0</span>
-                        Technology
-                    </li>
-                    <li class="list-group-item">
-                        <span class="badge">0</span>
-                        Blogging
-                    </li>
-                    <li class="list-group-item">
-                        <span class="badge">0</span>
-                        Information
-                    </li>-->
+                    <!--   <li class="list-group-item">
+                           <span class="badge">0</span>
+                           Technology
+                       </li>
+                       <li class="list-group-item">
+                           <span class="badge">0</span>
+                           Blogging
+                       </li>
+                       <li class="list-group-item">
+                           <span class="badge">0</span>
+                           Information
+                       </li>-->
 
 
                 </ul>
