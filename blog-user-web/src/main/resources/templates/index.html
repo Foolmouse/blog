@@ -99,6 +99,7 @@
                     <a th:href="@{/index/{blogId}(blogId=${blog.id})}">
                         <img th:src="${blog.cover}" src="../assets/img/1.jpg" style="max-height: 200px;max-width: 300px;" class="img-responsive img-rounded" />
                     </a>
+
                     <div class="blog-info">
                         <span class="label label-primary"
                               th:text="${#dates.format(blog.createdDatetime,'yyyy-MM-dd hh:mm:ss')}">Posted on 26th November 2014</span>
@@ -108,16 +109,20 @@
                             <span th:case="2" class="label label-success" >技术类</span>
                             <span th:case="3" class="label label-success" >闲谈</span>
                         </span>
-                        <span class="label label-danger" th:text="${blog.writer}">By Jhon</span>
+                        <span class="label label-danger" th:text="${blog.writer}">By LuoJu</span>
                         <span class="label label-info">
                                 <i class="fa fa-thumbs-up"></i>+0
                         <i class="fa fa-thumbs-down"></i>- 0
                             </span>
                     </div>
-                    <div class="blog-txt" th:utext="${blog.content(str,100)}">
+
+                    <div class="blog-txt" th:text="${#strings.abbreviate(blog.content,200)}">
                         博文没有内容...
                     </div>
+
                 </div>
+
+                <!-- 测试语法 -->
 
 
                 <nav>
@@ -155,6 +160,7 @@
                             <a th:if="${not isLastPage}"
                                th:href="@{/index(pageNum=${totalPages},pageSize=${pageSize})}">&raquo;</a>
                         </li>
+
                     </ul>
                 </nav>
                 <!--PAGING  END -->
@@ -165,9 +171,16 @@
 
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <strong>Main Categories</strong>
+                        <strong>博客分类</strong>
                     </li>
-                    <li class="list-group-item">
+
+                    <li class="list-group-item" th:each="category : ${categoryList}">
+                        <span class="badge" th:utext="${category.totalNum}">0</span>
+                        <span  th:utext="${category.name}">---</span>
+                    </li>
+
+
+                 <!--   <li class="list-group-item">
                         <span class="badge">0</span>
                         Technology
                     </li>
@@ -178,7 +191,7 @@
                     <li class="list-group-item">
                         <span class="badge">0</span>
                         Information
-                    </li>
+                    </li>-->
 
 
                 </ul>

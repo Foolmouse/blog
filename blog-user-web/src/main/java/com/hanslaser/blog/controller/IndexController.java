@@ -1,7 +1,9 @@
 package com.hanslaser.blog.controller;
 
 import com.hanslaser.blog.entity.Blog;
+import com.hanslaser.blog.entity.Category;
 import com.hanslaser.blog.service.BlogService;
+import com.hanslaser.blog.service.CategoryService;
 import com.hanslaser.blog.service.PortalLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,6 +30,8 @@ public class IndexController {
 
     @Autowired
     private BlogService blogService;
+    @Autowired
+    private CategoryService categoryService;
 
     @Autowired
     private PortalLogService logService;
@@ -41,6 +45,9 @@ public class IndexController {
     public String index(HttpServletRequest request, ModelMap map,
                         @RequestParam(required = false, defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "5") Integer pageSize) {
         Page<Blog> page = blogService.findByPage(pageNum - 1, pageSize);
+        List<Category> categoryList = categoryService.getAll();
+        //博客分类
+        map.put("categoryList",categoryList);
         //总条数
         map.put("total", page.getTotalElements());
         //每页数量
@@ -48,21 +55,7 @@ public class IndexController {
         //总页数
         map.put("totalPages", page.getTotalPages());
         //内容
-        List<Blog> contents = page.getContent();
-        List<Blog> newContents = new ArrayList<>();
-        for (int i = contents.size() - 1; i >= 0; i--) {
-            if (contents.get(i).getDr() == null) {
-                newContents.add(contents.get(i));
-            }
-        }
-//        map.put("content", newContents);
-//        for (Blog b : newContents) {
-//            if (b.getContent().length() >= 100) {
-//                b.setContent(b.getContent().substring(0, 100));
-//            }
-//        }
-
-        map.put("blogList", newContents);
+        map.put("blogList", page.getContent());
         //当前页
         map.put("pageNum", pageNum);
         //是否第一页

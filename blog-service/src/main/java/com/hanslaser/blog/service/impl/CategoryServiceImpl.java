@@ -1,5 +1,6 @@
 package com.hanslaser.blog.service.impl;
 
+import com.hanslaser.blog.entity.Blog;
 import com.hanslaser.blog.entity.Category;
 import com.hanslaser.blog.entity.CategoryRepository;
 import com.hanslaser.blog.service.BlogService;
@@ -7,6 +8,9 @@ import com.hanslaser.blog.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
+
+import java.util.List;
 
 /**
  * @author LuoJu
@@ -21,7 +25,6 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category> implements Ca
 
     @Autowired
     private BlogService blogService;
-
 
     @Override
     public void setBaseDAO() {
@@ -52,6 +55,18 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category> implements Ca
     public void delete(Long id) {
         blogService.findByCategoryNum(get(id).getNum());
         super.delete(id);
+    }
+
+    @Override
+    public List<Category> getAll() {
+        List<Category> categoryList = super.getAll();
+        for (Category category : categoryList) {
+            List<Blog> byCategoryNum = blogService.findByCategoryNum(category.getNum());
+            if (!CollectionUtils.isEmpty(byCategoryNum)) {
+                category.setTotalNum(byCategoryNum.size());
+            }
+        }
+        return categoryList;
     }
 
     private boolean checkNumIsDuplicate(Integer num) {

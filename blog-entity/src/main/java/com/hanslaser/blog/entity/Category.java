@@ -2,8 +2,10 @@ package com.hanslaser.blog.entity;
 
 import com.hanslaser.blog.entity.vo.BaseModel;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * desc : blog's category entity object;
@@ -16,12 +18,29 @@ public class Category extends BaseModel {
     /**
      * category name
      */
+    @Column
     private String name;
 
     /**
      * mapping on DB of column
      */
+    @Column
     private Integer num;
+
+    /**
+     * total of the kind category for blog
+     * @return
+     */
+    @Transient
+    private Integer totalNum;
+
+    public Integer getTotalNum() {
+        return totalNum;
+    }
+
+    public void setTotalNum(Integer totalNum) {
+        this.totalNum = totalNum;
+    }
 
     public String getName() {
         return name;
