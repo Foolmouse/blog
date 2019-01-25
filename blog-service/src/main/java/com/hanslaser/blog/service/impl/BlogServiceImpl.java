@@ -5,6 +5,10 @@ import com.hanslaser.blog.entity.BlogRepository;
 import com.hanslaser.blog.service.BlogService;
 import com.hanslaser.blog.util.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,9 +21,10 @@ import java.util.regex.Pattern;
 
 /**
  * @author LuoJu
- * @since 2018.11.1
+ * @since 2018.11.01
  */
 @Service
+@CacheConfig(cacheNames = "blogs")
 @Transactional
 public class BlogServiceImpl implements BlogService {
 
@@ -61,6 +66,7 @@ public class BlogServiceImpl implements BlogService {
         return page;
     }
 
+    @CachePut(key = "#p0.id")
     @Override
     public Blog update(Blog blog) {
         if (!StringUtils.isEmpty(blog.getCover())) {
@@ -77,6 +83,7 @@ public class BlogServiceImpl implements BlogService {
         return blogRepository.save(blog);
     }
 
+    @CacheEvict(key = "#p0")
     @Override
     public void delete(Long id) {
         Blog blog = blogRepository.findById(id).get();
@@ -84,6 +91,10 @@ public class BlogServiceImpl implements BlogService {
         blogRepository.save(blog);
     }
 
+    /**
+     * 需要注意的是当一个支持缓存的方法在对象内部被调用时是不会触发缓存功能的
+     */
+    @Cacheable(key = "#p0")
     @Override
     public Blog findById(Long id) {
         return blogRepository.findById(id).get();

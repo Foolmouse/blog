@@ -5,6 +5,7 @@ import com.hanslaser.blog.entity.vo.BaseModel;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * 博客文章实体类
@@ -14,7 +15,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "blog")
-public class Blog extends BaseModel {
+public class Blog extends BaseModel implements Serializable {
+
 
     @Column
     private String title;

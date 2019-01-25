@@ -2,7 +2,6 @@ package com.hanslaser.blog.service;
 
 import com.hanslaser.blog.entity.Blog;
 import org.springframework.data.domain.Page;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -26,7 +25,7 @@ public interface BlogService {
     /**
      * 分页查询
      */
-    Page<Blog> findByPage(int currentPage , int pageSize);
+    Page<Blog> findByPage(int currentPage, int pageSize);
 
     Blog update(Blog blog);
 
@@ -36,6 +35,7 @@ public interface BlogService {
 
     /**
      * 根据分类id查询博客
+     *
      * @param categoryId
      * @return
      */

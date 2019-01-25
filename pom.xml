@@ -57,6 +57,14 @@
             </exclusions>-->
         </dependency>
 
+        <!-- 单元测试 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
         <!-- 模板引擎 Thymeleaf 依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -74,7 +82,6 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-
 
         <!-- Cache 缓存依赖 -->
         <dependency>
@@ -112,6 +119,7 @@
             <artifactId>mail</artifactId>
             <version>1.4.7</version>
         </dependency>
+
 
     </dependencies>
 

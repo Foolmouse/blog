@@ -56,7 +56,7 @@
                         <div class="card-body">
                             <form class="form-horizontal" th:action="@{/blog/{action}(action=${action})}" method="post">
                                 <div>
-                                    <input type="hidden" name="id" th:value="${blog.id}"/>
+                                    <input type="hidden" name="id" th:value="${blog.id}" />
                                     <!--<input type="hidden" name="createdDatetime" th:value="${#dates.format(blog.createdDatetime,'yyyy-MM-dd hh:mm:ss')}"/>-->
                                 </div>
 

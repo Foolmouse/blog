@@ -19,9 +19,6 @@ import org.springframework.context.annotation.PropertySources;
 
 @SpringBootApplication
 @EnableCaching
-@ComponentScan(value = "com.hanslaser.blog")
-@EnableAutoConfiguration
-@ServletComponentScan("com.hanslaser.blog")
 public class WebApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
