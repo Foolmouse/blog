@@ -55,6 +55,13 @@
                     <artifactId>spring-boot-starter-tomcat</artifactId>
                 </exclusion>
             </exclusions>-->
+            <!-- 取出内嵌logback -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- 单元测试 -->
@@ -96,11 +103,10 @@
             <version>${spring.boot.starter.redis}</version>
         </dependency>
 
-        <!-- 测试依赖 -->
+        <!-- log4j -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <artifactId>spring-boot-starter-log4j</artifactId>
         </dependency>
 
         <!--  邮件 -->
