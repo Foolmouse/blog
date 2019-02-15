@@ -1,6 +1,7 @@
 package com.hanslaser.blog.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
@@ -21,7 +22,10 @@ public class MyMailSender {
     /**
      * 必须与application.properties中发件人邮箱一致
      */
-    private static String addresser = "NEOA@hanslaser.com";
+//    private static String addresser = "NEOA@hanslaser.com";
+
+    @Value("${email.username:#{null}}")
+    private String addresser;
 
     /**
      * @param to      收件人
