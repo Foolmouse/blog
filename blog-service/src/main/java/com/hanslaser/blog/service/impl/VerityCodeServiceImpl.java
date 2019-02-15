@@ -1,11 +1,12 @@
 package com.hanslaser.blog.service.impl;
 
-import com.hanslaser.blog.service.VerityCodeService;
+import com.hanslaser.blog.entity.VisitorEmail;
+import com.hanslaser.blog.entity.VisitorEmailRepository;
 import com.hanslaser.blog.entity.vo.VerityCode;
+import com.hanslaser.blog.service.VerityCodeService;
 import com.hanslaser.blog.util.MyMailSender;
 import com.hanslaser.blog.util.VerityCodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,8 +22,13 @@ import java.util.Date;
 @Transactional
 public class VerityCodeServiceImpl implements VerityCodeService {
 
+    private static String welcome = "欢迎关注罗炬的个人博客,以后有更新会提示你哦.<a href='www.dunkluo.top' target='_blank'>点击访问博客~</a>";
+
     @Autowired
     private MyMailSender myMailSender;
+
+    @Autowired
+    private VisitorEmailRepository visitorEmailRepository;
 
     @Override
     public VerityCode sendEmailVerityCode(String prefixMessage, String email) throws MessagingException {
@@ -42,4 +48,25 @@ public class VerityCodeServiceImpl implements VerityCodeService {
         return code;
     }
 
+    @Override
+    public void subscribeEmail(String visitorEmail) throws MessagingException {
+        VisitorEmail email = new VisitorEmail();
+        email.setVisitorEmail(visitorEmail);
+        try {
+            myMailSender.sendMail(visitorEmail, "罗炬的个人博客", welcome);
+            email.setEnable("可用,发送正常");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+            email.setEnable(e.toString());
+            throw e;
+        } finally {
+            visitorEmailRepository.save(email);
+        }
+    }
+
+    @Override
+    public boolean checkSubscribe(String visitorEmail) {
+        VisitorEmail byVisitorEmail = visitorEmailRepository.findByVisitorEmail(visitorEmail);
+        return null == byVisitorEmail ? true : false;
+    }
 }

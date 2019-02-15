@@ -11,6 +11,10 @@ import javax.mail.MessagingException;
  * @since 2018.11.06
  */
 public interface VerityCodeService {
+
     VerityCode sendEmailVerityCode(String prefixMessage, String email) throws MessagingException;
 
+    void subscribeEmail(String visitorEmail) throws MessagingException;
+
+    boolean checkSubscribe(String visitorEmail);
 }
