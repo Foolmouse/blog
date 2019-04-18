@@ -1,6 +1,7 @@
 package com.hanslaser.blog.service.impl;
 
 import com.hanslaser.blog.service.AttachmentService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -9,10 +10,8 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.spi.CalendarDataProvider;
 
 /**
  * desc: save images
@@ -23,8 +22,10 @@ import java.util.spi.CalendarDataProvider;
 @Service
 public class AttachmentServiceImpl implements AttachmentService {
 
-    private static final String WINDOWS_UPLOAD_PATH = "E:\\uploadImages";
-    private static final String LINUX_UPLOAD_PATH = "/home/uploadImages";
+    @Value("${upload.file.windows.path:#{null}}")
+    private String WINDOWS_UPLOAD_PATH;
+    @Value("${upload.file.linux.path:#{null}}")
+    private String LINUX_UPLOAD_PATH;
     //对应tomcat配置中的虚拟路径
     public static final String VIRTUAL_PATH = "/uploadImages";
 
@@ -39,7 +40,7 @@ public class AttachmentServiceImpl implements AttachmentService {
         //String localFileName = format.format(new Date()) + "-" + System.currentTimeMillis() + "-" + originalName;
 
         Calendar instance = Calendar.getInstance();
-        String currentData =""+ instance.get(Calendar.YEAR) + instance.get(Calendar.MONDAY)+ instance.get(Calendar.DAY_OF_MONTH);
+        String currentData = "" + instance.get(Calendar.YEAR) + instance.get(Calendar.MONDAY) + instance.get(Calendar.DAY_OF_MONTH);
         String localFileName = currentData + "-" + System.currentTimeMillis() + "-" + originalName;
 
         // get project path
@@ -89,7 +90,6 @@ public class AttachmentServiceImpl implements AttachmentService {
             return WINDOWS_UPLOAD_PATH;
         }
     }
-
 
 
 }
