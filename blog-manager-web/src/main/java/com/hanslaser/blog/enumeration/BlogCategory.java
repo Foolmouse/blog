@@ -1,13 +1,15 @@
 package com.hanslaser.blog.enumeration;
 
 /**
- * Description : Eum class is a powerful util , we can use to put data that like Map by the value ;
+ * Description : Eum class is a powerful util , we can use to put data that like Map by the key ;
  *
  * @author LuoJu
  * @since 2018.10.31
  */
 public enum BlogCategory {
-    LIVE(1, "生活类"), PROGRAMME(2, "技术类") , CHAT(3,"闲谈");
+    LIVE(1, "生活类"),
+    PROGRAMME(2, "技术类") ,
+    CHAT(3,"闲谈");
 
     private String name;
     private int index;
@@ -25,6 +27,11 @@ public enum BlogCategory {
             }
         }
         return "";
+    }
+
+    //todo 验证能否直接返回name
+    public String getName(int index){
+        return name;
     }
 
     public String getName() {
