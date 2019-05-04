@@ -20,8 +20,6 @@ import org.springframework.http.HttpStatus;
 @SpringBootApplication
 @EnableCaching
 @ComponentScan(value = "com.hanslaser.blog")
-//@EnableAutoConfiguration
-//@ServletComponentScan("com.hanslaser.blog")
 public class WebApplication extends SpringBootServletInitializer {
     public static void main(String[] args) {
         SpringApplication.run(WebApplication.class, args);

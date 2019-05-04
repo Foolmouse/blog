@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 /**
  * @author: create by LuoJu
  * @date:2019/3/27
- * @description: com.hanslaser.blog.interceptor
+ * @description: com.hanslaser.blog.interceptor 配置拦截器
  */
 @Configuration
 public class MyWebMvcConfigurer implements WebMvcConfigurer {

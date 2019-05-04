@@ -17,8 +17,9 @@ import java.io.IOException;
 public class LogFilter implements Filter {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
+
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(javax.servlet.FilterConfig filterConfig) throws ServletException {
 
     }
 
