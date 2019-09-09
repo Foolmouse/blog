@@ -1,5 +1,8 @@
 package com.hanslaser.blog.aop;
 
+import com.hanslaser.blog.entity.PortalLog;
+import com.hanslaser.blog.util.DateUtils;
+import com.hanslaser.blog.util.IPUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Before;
@@ -36,6 +39,14 @@ public class AspectLog {
         logger.info("IP : " + request.getRemoteAddr());
         logger.info("CLASS_METHOD : " + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
         logger.info("ARGS : " + Arrays.toString(joinPoint.getArgs()));
+
+        PortalLog log = new PortalLog();
+        log.setIp(IPUtils.getIpAddr(request));
+
+        log.setMethod(request.getMethod());
+        log.setUserAgent(request.getHeader("User-Agent"));
+        log.setRequestDateTime(DateUtils.getTimestamp());
+
 
     }
 

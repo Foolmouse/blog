@@ -14,8 +14,9 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author: create by LuoJu
  * @date:2019/3/27
  * @description: 全局拦截器,可输出请求日志
+ * 已使用aop记录日志
  */
-@Component
+//@Component
 public class MyInterceptor implements HandlerInterceptor {
 
     private static Logger logger = LoggerFactory.getLogger(MyInterceptor.class);
