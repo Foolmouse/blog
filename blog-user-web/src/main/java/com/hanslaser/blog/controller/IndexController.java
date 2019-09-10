@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -47,7 +46,7 @@ public class IndexController {
         Page<Blog> page = blogService.findByPage(pageNum - 1, pageSize);
         List<Category> categoryList = categoryService.getAll();
         //博客分类
-        map.put("categoryList",categoryList);
+        map.put("categoryList", categoryList);
         //总条数
         map.put("total", page.getTotalElements());
         //每页数量
@@ -71,6 +70,10 @@ public class IndexController {
 
     @RequestMapping(value = "/index/{blogId}", method = RequestMethod.GET)
     public String single(HttpServletRequest request, ModelMap map, @PathVariable Long blogId) {
+        //博客分类
+        map.put("categoryList", categoryService.getAll());
+
+
         Blog blog = blogService.findById(blogId);
         logService.log(request, blog.getTitle());
         map.put("blog", blog);

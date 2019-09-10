@@ -93,10 +93,12 @@
                             </span>
                         </span>
                         <span class="label label-danger" th:text="${blog.writer}">By LuoJu</span>
-                        <span class="label label-info">
+
+                        <!-- 点赞 -->
+                       <!-- <span class="label label-info">
                                 <i class="fa fa-thumbs-up"></i>+0
                         <i class="fa fa-thumbs-down"></i>- 0
-                            </span>
+                            </span>-->
                     </div>
 
                     <div class="blog-txt" th:text="${#strings.abbreviate(blog.abstractContent,100)}">
@@ -222,7 +224,7 @@
         <div class="col-md-12 text-center set-foot">
             &copy 2019 | More Information <a href="https://github.com/Foolmouse" target="_blank">罗炬的Github</a>
             <br />
-           老铁的友链 |  <a href="https://github.com/Foolmouse" target="_blank">Allan的个人博客</a>
+           老铁的友链 |  <a href="www.enjoycoding.info" target="_blank">Allan的个人博客</a>
         </div>
 
         <div class="col-md-12 text-center set-foot">
