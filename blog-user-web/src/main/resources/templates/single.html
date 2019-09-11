@@ -73,33 +73,40 @@
                 <nav id="menu-wrap">
                     <div id="menu-trigger">Menu</div>
                     <ul id="menu" style="display: none;">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="../index">Home</a></li>
                         <li>
                             <a href="#">Categories</a>
                             <ul>
-                                <li>
-                                    <a href="#">Item 01</a>
-                                </li>
-                                <li>
-                                    <a href="#">Item 02</a>
-                                </li>
-                                <li>
-                                    <a href="#">Item 03</a>
-                                    <ul>
-                                        <li><a href="#">Item 31</a></li>
-                                        <li><a href="#">Item 32</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Item 04</a>
-                                    <ul>
-                                        <li><a href="#">Item 41</a></li>
-                                        <li><a href="#">Item 42</a></li>
-                                        <li><a href="#">Item 43</a></li>
-                                        <li><a href="#">Item 44</a></li>
-                                    </ul>
+                                <li  th:each="category : ${categoryList}">
+                                    <a  th:utext="${category.name}"></a>
                                 </li>
                             </ul>
+
+
+                            <!--<ul>-->
+                                <!--<li>-->
+                                    <!--<a href="#">Item 01</a>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<a href="#">Item 02</a>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<a href="#">Item 03</a>-->
+                                    <!--<ul>-->
+                                        <!--<li><a href="#">Item 31</a></li>-->
+                                        <!--<li><a href="#">Item 32</a></li>-->
+                                    <!--</ul>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<a href="#">Item 04</a>-->
+                                    <!--<ul>-->
+                                        <!--<li><a href="#">Item 41</a></li>-->
+                                        <!--<li><a href="#">Item 42</a></li>-->
+                                        <!--<li><a href="#">Item 43</a></li>-->
+                                        <!--<li><a href="#">Item 44</a></li>-->
+                                    <!--</ul>-->
+                                <!--</li>-->
+                            <!--</ul>-->
                         </li>
                         <li><a href="single.html">About</a></li>
                         <li><a href="contact.html">Contact</a></li>
@@ -112,7 +119,7 @@
                 </nav>
             </div>
         </div>
-        <div class="clearfix">
+       <!-- <div class="clearfix">
             <div class="wrap-header">
                 <div class="row">
                     <div class="col-full t-center">
@@ -123,12 +130,12 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="zerogrid">
+        </div>-->
+       <!-- <div class="zerogrid">
             <div class="cat-title t-center">
                 <a href="#">TEMPLATE</a>
             </div>
-        </div>
+        </div>-->
     </header>
 
     <section id="container">
@@ -332,7 +339,7 @@
                             <li><a href=""><i class="fa fa-github"></i></a></li>
                         </ul>
                         <div class="copy-right">
-                            <p>Copyright 2018 - 更多信息 <a href="https://github.com/Foolmouse" target="_blank"
+                            <p>Copyright 2019 - 更多信息 <a href="https://github.com/Foolmouse" target="_blank"
                                                                   title="github">我的github</a> </p>
                         </div>
                     </div>
