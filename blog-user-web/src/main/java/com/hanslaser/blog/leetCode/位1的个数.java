@@ -5,6 +5,7 @@ public class 位1的个数 {
     public static void main(String[] args) {
         //前面加零补齐的是八进制
         hammingWeight(00000000000000000000000000001011);
+        System.out.println("测试一哈分支");
     }
 
     public static int hammingWeight(int n) {
@@ -43,5 +44,9 @@ public class 位1的个数 {
 //
 //        return count;
 //    }
+
+
+
+
 
 }
