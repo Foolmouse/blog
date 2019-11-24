@@ -28,7 +28,7 @@ public class BlogController {
     private final static String BLOG_FORM = "blogForm";
 
     @Autowired
-    private BlogService blogService;
+    private   BlogService blogService;
     @Autowired
     private CategoryService categoryService;
 
