@@ -28,7 +28,7 @@ public class CorsFilter implements Filter {
         response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type,Token,Accept, Connection, User-Agent, Cookie");
         response.setHeader("Access-Control-Max-Age", "3600");
 
-        logger.info("设置跨域请求");
+//        logger.info("设置跨域请求");
         filterChain.doFilter(servletRequest, response);
     }
 

@@ -14,8 +14,9 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author: create by LuoJu
  * @date:2019/3/27
  * @description: 全局拦截器,可输出请求日志
+ * 已使用aop记录日志
  */
-@Component
+//@Component
 public class MyInterceptor implements HandlerInterceptor {
 
     private static Logger logger = LoggerFactory.getLogger(MyInterceptor.class);
@@ -33,7 +34,6 @@ public class MyInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        logger.info("拦截器preHandle");
         System.out.println(handler.getClass());
         map.put(request, System.currentTimeMillis());
         return true;
@@ -45,7 +45,6 @@ public class MyInterceptor implements HandlerInterceptor {
      */
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object o, ModelAndView modelAndView) throws Exception {
-        logger.info("拦截器postHandle");
     }
 
     /**
@@ -54,7 +53,6 @@ public class MyInterceptor implements HandlerInterceptor {
      */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object o, Exception e) throws Exception {
-        logger.info("拦截器afterHandle");
         Long handleTime = System.currentTimeMillis() - (Long) map.get(request);
         logger.info("此次afterCompletion请求用时" + handleTime);
         map.remove(request);

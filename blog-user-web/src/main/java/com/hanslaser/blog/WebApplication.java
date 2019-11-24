@@ -10,6 +10,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
  * 门户启动类
@@ -19,6 +20,7 @@ import org.springframework.context.annotation.PropertySources;
 
 @SpringBootApplication
 @EnableCaching
+@EnableAsync
 public class WebApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {

@@ -4,6 +4,7 @@ import com.hanslaser.blog.entity.PortalLog;
 import com.hanslaser.blog.entity.PortalLogRepository;
 import com.hanslaser.blog.service.PortalLogService;
 import com.hanslaser.blog.util.DateUtils;
+import com.hanslaser.blog.util.IPUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -30,7 +31,7 @@ public class PortalLogServiceImpl implements PortalLogService {
     @Override
     public void log(HttpServletRequest request, String blogName) {
         PortalLog portalLog = new PortalLog();
-        portalLog.setIp(request.getRemoteHost());
+        portalLog.setIp(IPUtils.getIpAddr(request));
         portalLog.setMethod(request.getMethod());
         portalLog.setUserAgent(request.getHeader("User-Agent"));
         portalLog.setRequestDateTime(DateUtils.getTimestamp());

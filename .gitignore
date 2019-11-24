@@ -1,0 +1,5 @@
+/blog-common/target/classes/
+/blog-entity/target/classes/com/hanslaser/blog/
+/blog-manager-web/target/classes/
+/blog-service/target/classes/com/hanslaser/blog/service/
+/blog-user-web/target/classes/
