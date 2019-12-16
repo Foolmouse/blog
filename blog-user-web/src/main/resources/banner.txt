@@ -16,10 +16,4 @@ ______   ____________/  |______  |  |       _____   ____   __| _/_ __|  |   ____
 在dev上第一次commit  加点料1    再加料
 在dev上第二次commit  加点料2
 在dev上第三次commit
-hhh
-
-在master上提交
-master再进一步
-
-sdfadfafdafdfadfa22222
-hhhhhhh111111
+clear
