@@ -73,9 +73,20 @@ public class IndexController {
         //博客分类
         map.put("categoryList", categoryService.getAll());
 
-
         Blog blog = blogService.findById(blogId);
+        blog.setHits(blog.getHits() + 1);
+        blogService.update(blog);
+
         logService.log(request, blog.getTitle());
+        map.put("blog", blog);
+        return "single";
+    }
+
+    @RequestMapping(value = "/index/like/{blogId}", method = RequestMethod.GET)
+    public String like(HttpServletRequest request, ModelMap map, @PathVariable Long blogId) {
+        Blog blog = blogService.findById(blogId);
+        blog.setLikes(blog.getLikes() + 1);
+        blogService.update(blog);
         map.put("blog", blog);
         return "single";
     }

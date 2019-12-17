@@ -13,6 +13,7 @@ import java.io.Serializable;
  * @author LuoJu
  * @since 2018.10.31
  */
+
 @Entity
 @Table(name = "blog")
 public class Blog extends BaseModel implements Serializable {
@@ -42,7 +43,33 @@ public class Blog extends BaseModel implements Serializable {
     @Column
     private String cover;
 
+    /**
+     * 点击量
+     */
+    @Column
+    private String hits;
 
+    /**
+     * 点赞数
+     */
+    @Column
+    private String likes;
+
+    public String getHits() {
+        return hits;
+    }
+
+    public void setHits(String hits) {
+        this.hits = hits;
+    }
+
+    public String getLikes() {
+        return likes;
+    }
+
+    public void setLikes(String likes) {
+        this.likes = likes;
+    }
 
     public String getAbstractContent() {
         return abstractContent;
