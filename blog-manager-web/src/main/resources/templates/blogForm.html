@@ -159,10 +159,18 @@
     <!-- ckEditor -->
     <script th:src="@{/ckeditor5-build-classic/ckeditor.js}"></script>
 
+
+
     <script>
+
+        function Markdown( editor ) {
+            editor.data.processor = new GFMDataProcessor();
+        }
+
         $(function () {
             ClassicEditor.create(document.querySelector('#editor_cover'), {
                 // extraPlugins: [MyCustomUploadAdapterPlugin]
+
                 ckfinder: {
                     uploadUrl: '/image/loadImage'
                 }
@@ -170,6 +178,10 @@
 
             ClassicEditor.create(document.querySelector('#editor_content'), {
                 // extraPlugins: [MyCustomUploadAdapterPlugin]
+                plugins: [
+                    Markdown,
+                    // ...
+                ],
                 ckfinder: {
                     uploadUrl: '/image/loadImage'
                 }
