@@ -4,3 +4,8 @@
 /blog-service/target/classes/com/hanslaser/blog/service/
 /blog-user-web/target/classes/
 /.idea/
+/blog-common/target/
+/blog-entity/target/
+/blog-manager-web/target/
+/blog-service/target/
+/blog-user-web/target/

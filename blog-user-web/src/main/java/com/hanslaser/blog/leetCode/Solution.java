@@ -15,6 +15,9 @@ class Solution {
 
     public static void main(String[] args) {
 
+
+
+
       /*  LinkedList<Object> list1 = new LinkedList<>();
         list1.add(1);
         list1.add(2);
@@ -62,6 +65,9 @@ class Solution {
             //这里有点不明白，既然prev==head，那他们指向的是同一份对象
             //为什么prev 被等于号指向到了prev.next， 而head的指向确没有变化呢
             //而修改prev的值head却也会跟随变化
+
+            //后续：现在好像看懂了，prev的指向变到了下一个元素到地址，他们指向的不是同一个了
+            //什么值拷贝和对象拷贝都是虚的，必须分析指向地址
             if (prev.next.val == val) {
                 prev.next = prev.next.next;
             } else {
