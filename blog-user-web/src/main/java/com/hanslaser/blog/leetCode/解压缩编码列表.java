@@ -23,6 +23,10 @@ public class 解压缩编码列表 {
             int i1 = rlElist[i];
             System.out.println(i1);
         }
+
+        System.out.println(5/10);
+        System.out.println(4/10);
+        System.out.println(4%10);
     }
 
     public static int[] decompressRLElist(int[] nums) {
