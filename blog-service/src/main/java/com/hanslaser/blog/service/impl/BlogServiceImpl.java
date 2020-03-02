@@ -25,12 +25,12 @@ import java.util.regex.Pattern;
  */
 @Service
 @CacheConfig(cacheNames = "blogs")
-@Transactional
 public class BlogServiceImpl implements BlogService {
 
     @Autowired
     private BlogRepository blogRepository;
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public Blog create(Blog blog) {
         if (!StringUtils.isEmpty(blog.getCover())) {
