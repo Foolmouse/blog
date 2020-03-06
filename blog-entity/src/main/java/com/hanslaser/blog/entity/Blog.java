@@ -50,12 +50,12 @@ public class Blog extends BaseModel implements Serializable {
      * 点击量
      */
     @Column
-    private int hits;
+    private Integer hits;
 
     /**
      * 点赞数
      */
     @Column
-    private int likes;
+    private Integer likes;
 
 }
