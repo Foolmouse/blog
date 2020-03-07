@@ -86,6 +86,7 @@ public class IndexController {
     public String like(HttpServletRequest request, ModelMap map, @PathVariable Long blogId) {
         Blog blog = blogService.findById(blogId);
         blog.setLikes(blog.getLikes() + 1);
+        blog.setId(blogId); //todo 这里从缓存中读取entity没有id？
         blogService.update(blog);
         map.put("blog", blog);
         return "single";
