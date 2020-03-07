@@ -109,7 +109,7 @@ public class BlogServiceImpl implements BlogService {
      * 处理截取图片展示图路径
      */
     private String handleCoverPath(String cover) {
-        String pattern = AttachmentServiceImpl.VIRTUAL_PATH + "(.*?)(\\.(.{3}))";
+        String pattern = AttachmentServiceImpl.VIRTUAL_PATH + "(.*?)(\\.(.{4}))";
         Pattern compile = Pattern.compile(pattern);
         Matcher matcher = compile.matcher(cover);
         if (matcher.find()) {
