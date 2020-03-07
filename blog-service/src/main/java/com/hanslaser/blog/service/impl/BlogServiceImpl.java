@@ -49,7 +49,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Page<Blog> findByPage(int currentPage, int pageSize) {
-        PageRequest request = PageRequest.of(currentPage, pageSize, Sort.Direction.DESC, "lastModifiedDatetime");
+        PageRequest request = PageRequest.of(currentPage, pageSize, Sort.Direction.DESC, "createdDatetime");
         Blog blog = new Blog();
         blog.setDr(0);
         ExampleMatcher matcher = ExampleMatcher.matching();
