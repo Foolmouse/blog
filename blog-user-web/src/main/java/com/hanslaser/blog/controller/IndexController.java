@@ -73,8 +73,10 @@ public class IndexController {
         //博客分类
         map.put("categoryList", categoryService.getAll());
 
+        //todo 这里从缓存中读取entity没有id？
         Blog blog = blogService.findById(blogId);
         blog.setHits(blog.getHits() + 1);
+        blog.setId(blogId);
         blogService.update(blog);
 
         logService.log(request, blog.getTitle());
@@ -86,7 +88,7 @@ public class IndexController {
     public String like(HttpServletRequest request, ModelMap map, @PathVariable Long blogId) {
         Blog blog = blogService.findById(blogId);
         blog.setLikes(blog.getLikes() + 1);
-        blog.setId(blogId); //todo 这里从缓存中读取entity没有id？
+        blog.setId(blogId);
         blogService.update(blog);
         map.put("blog", blog);
         return "single";
