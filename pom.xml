@@ -116,6 +116,10 @@
             <artifactId>spring-boot-starter-redis</artifactId>
             <version>${spring.boot.starter.redis}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
 
         <!-- log4j -->
         <!--<dependency>
