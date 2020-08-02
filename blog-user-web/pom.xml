@@ -10,10 +10,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>blog-user-web</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <build>
-        <!-- 打包名称 -->
         <finalName>user-web</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
     </build>
 
     <dependencies>
@@ -22,8 +27,6 @@
             <artifactId>blog-service</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
-
     </dependencies>
 
 </project>
