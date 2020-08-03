@@ -49,17 +49,16 @@ public class AspectLog {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
 
-        long startTime = System.currentTimeMillis();
+        //long startTime = System.currentTimeMillis();
         Object proceed = point.proceed();
-
-        long endTime = System.currentTimeMillis();
+        //long endTime = System.currentTimeMillis();
 
         // 记录下请求内容
-        logger.info("URL : " + request.getRequestURL().toString() + "===" + request.getMethod());
-        logger.info("IP : " + request.getRemoteAddr());
-        logger.info("CLASS_METHOD : " + point.getSignature().getDeclaringTypeName() + "." + point.getSignature().getName());
-        logger.info("ARGS : " + Arrays.toString(point.getArgs()));
-        logger.info("请求耗时：{}", endTime - startTime);
+        //logger.info("URL : " + request.getRequestURL().toString() + "===" + request.getMethod());
+        //logger.info("IP : " + request.getRemoteAddr());
+        //logger.info("CLASS_METHOD : " + point.getSignature().getDeclaringTypeName() + "." + point.getSignature().getName());
+        //logger.info("ARGS : " + Arrays.toString(point.getArgs()));
+        //logger.info("请求耗时：{}", endTime - startTime);
 
         return proceed;
     }

@@ -19,12 +19,13 @@ services:
 
   nginx:
     image: nginx:1.13
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
     expose:
       - "80"
     ports:
       - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /home/uploadImages:/uploadImages
     depends_on:
       - user-web
 
@@ -37,12 +38,16 @@ services:
       - spring.datasource.username:root
       - spring.datasource.password:password
       - server.port=8080
+    volumes:
+      - /home/uploadImages:/uploadImages
     depends_on:
       - mysql
       - redis
 
   manager-web:
-    image: manager-web:latest
+#    image: manager-web:latest
+#    从制品库拉取 latest 版本
+    image: dunkluo-docker.pkg.coding.net/blog/dunkluo/manager-web:latest
     ports:
       - "9090:9090"
     environment:
@@ -50,6 +55,8 @@ services:
       - spring.datasource.username:root
       - spring.datasource.password:password
       - server.port=9090
+    volumes:
+      - /home/uploadImages:/home/uploadImages
     depends_on:
       - mysql
       - redis

@@ -54,7 +54,7 @@ public class MyInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object o, Exception e) throws Exception {
         Long handleTime = System.currentTimeMillis() - (Long) map.get(request);
-        logger.info("此次afterCompletion请求用时" + handleTime);
+        logger.info("afterCompletion用时" + handleTime);
         map.remove(request);
     }
 
